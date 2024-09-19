@@ -13,14 +13,22 @@ In this repository the training-data is stored in directory called `data\train`.
 ## To Do's
 
 - [ ] Compare Architectures, Choice of Architecture, Modification of Architecture (A)
+- [ ] Batch Normalisation (A)
+- [ ] Transfer learning (B)
+- [ ] Saliency maps for best model + discussion of saliency maps (C)
 - [ ] Trainingsetup, Parameterselection (D)
 - [ ] Compare Optimizers (D)
 - [ ] Data Augmentation (E)
-- [ ] Batch Normalisation (A)
 - [ ] Accuracy assessment, wrong classifications + interpretation (E)
-- [ ] Transfer learning (B)
-- [ ] Saliency maps for best model + discussion of saliency maps (C)
 - [ ] how was CHatGPT used?
 - [ ] Poster (tbd)
+
+A - Nandor
+B - Zeljko
+C - Lukas
+D - Filip
+E - Alex
+
+Deadline 1st part: Sunday morning 10AM 
 
 Deadline: 27.09.2024 at 17:00
