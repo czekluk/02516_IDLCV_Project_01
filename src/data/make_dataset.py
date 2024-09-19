@@ -4,7 +4,7 @@ import PIL.Image as Image
 import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
 import numpy as np
-import custom_transforms
+import data.custom_transforms
 
 from torch.utils.data import DataLoader, Dataset
 
@@ -60,6 +60,7 @@ class HotdogNotHotDog_DataModule:
             train_transform (_type_, optional): Transform to apply to train data. Defaults to transforms.ToTensor().
             test_transform (_type_, optional): Transform to apply to test data. Defaults to transforms.ToTensor().
         """
+        assert type(data_path)==str, "data_path needs to be a string"
         self.batch_size = batch_size
         self.train_dataset = HotdogNotHotdog_Dataset(
             train=True, transform=train_transform, data_path=data_path
@@ -138,6 +139,12 @@ class HotdogNotHotDog_DataModule:
             + f" Training dataset: {len(self.train_dataset)} samples\n"
             + f" Test dataset: {len(self.test_dataset)} samples"
         )
+    
+    def get_trainset_size(self):
+        return len(self.train_dataset)
+
+    def get_testset_size(self):
+        return len(self.test_dataset)
 
 
 if __name__ == "__main__":
@@ -164,3 +171,5 @@ if __name__ == "__main__":
         plt.imshow(np.swapaxes(np.swapaxes(images[i].numpy(), 0, 2), 0, 1))
         plt.title(["hotdog", "not hotdog"][labels[i].item()])
         plt.axis("off")
+    
+    plt.show()
