@@ -4,7 +4,7 @@ import PIL.Image as Image
 import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
 import numpy as np
-import data.custom_transforms
+from data.custom_transforms import random_transform, base_transform
 
 from torch.utils.data import DataLoader, Dataset
 
@@ -151,10 +151,10 @@ if __name__ == "__main__":
     print("Data directory: ", DATA_DIR)
 
     img_size = 128
-    train_transform = custom_transforms.random_transform(
+    train_transform = random_transform(
         size=img_size, horizontal=True, vertical=True, rotation=True, normalize=False
     )
-    test_transform = custom_transforms.base_transform(size=img_size, normalize=False)
+    test_transform = base_transform(size=img_size, normalize=False)
 
     dm = HotdogNotHotDog_DataModule(
         train_transform=train_transform, test_transform=test_transform
