@@ -5,7 +5,7 @@ import torch
 import torch.nn as nn
 import json
 import os
-
+from pretrained_models import FrozenPretrainedResNet34
 
 PROJECT_BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -49,7 +49,7 @@ def main():
     trainloader = dm.train_dataloader()
     testloader = dm.test_dataloader()
     
-    models = [DummyNet, DummyNet]
+    models = [FrozenPretrainedResNet34]
     optimizers = [
         {"optimizer": torch.optim.Adam, "params": {"lr": 1e-3}},
         {"optimizer": torch.optim.SGD, "params": {"lr": 1e-2, "momentum": 0.9}}
