@@ -1,11 +1,10 @@
-from trainer import Trainer, DummyNet
+from trainer import Trainer
 from data.make_dataset import HotdogNotHotDog_DataModule
 from data.custom_transforms import base_transform
 import torch
-import torch.nn as nn
 import json
 import os
-from pretrained_models import FrozenPretrainedResNet34
+from models.pretrained_models import FrozenPretrainedResNet34
 
 PROJECT_BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
