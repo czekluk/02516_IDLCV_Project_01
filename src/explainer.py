@@ -4,14 +4,9 @@ import torchvision
 import torchvision.transforms as T
 import torch.nn as nn
 import matplotlib.pyplot as plt
-from tqdm import tqdm
 from data.make_dataset import HotdogNotHotDog_DataModule
 from data.custom_transforms import base_transform
-from typing import List
-from torch.utils.data import DataLoader
 from torchvision.models import VGG19_Weights
-from trainer import DummyNet, Trainer
-from PIL import Image
 import cv2
 
 class SaliencyExplainer:
@@ -38,6 +33,7 @@ class SaliencyExplainer:
         """
         # check for correct input datatypes
         assert torch.is_tensor(image) == True
+        assert len(image.shape) == 4
 
         # apply transform if needed
         if resize == True:
@@ -113,7 +109,7 @@ class SaliencyExplainer:
             image = cv2.resize(image,(saliency_map.shape[0],saliency_map.shape[1]))
             image = image * 255
             image = image.astype(np.uint8)
-            heatmap = cv2.addWeighted(saliency_heatmap,0.4,image,0.6,0)
+            heatmap = cv2.addWeighted(saliency_heatmap,0.3,image,0.7,0)
 
             # create plot
             fig, ax = plt.subplots()
@@ -142,9 +138,3 @@ if __name__ == "__main__":
     sal_map = explainer.explain(img, resize=True, size=224)
 
     explainer.show_image(sal_map, overlay=True, image=img, save=True, hist_eq=True)
-
-    
-
-
-    
-
