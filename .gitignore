@@ -108,3 +108,5 @@ venv.bak/
 
 # trained models
 *.pth
+
+/results/saved_saliency_maps
