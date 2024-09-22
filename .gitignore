@@ -110,3 +110,4 @@ src/data/
 *.pth
 
 /results/saved_saliency_maps
+/data/
