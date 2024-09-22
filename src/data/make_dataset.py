@@ -11,7 +11,7 @@ from torch.utils.data import DataLoader, Dataset
 PROJECT_BASE_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 )
-DATA_DIR = os.path.join(PROJECT_BASE_DIR, os.path.join("data"))
+DATA_DIR = os.path.join(PROJECT_BASE_DIR, "data")
 
 
 class HotdogNotHotdog_Dataset(Dataset):
