@@ -12,6 +12,7 @@ Since the Trainer initializes a model with no arguments passed, seperate classes
 are defined for models with the same architecture and different modes.
 """
 
+
 class PretrainedResNet18(nn.Module):
     def __init__(self, fine_tuning: bool = False, num_classes: int = 2):
         """
@@ -29,7 +30,13 @@ class PretrainedResNet18(nn.Module):
                 param.requires_grad = False
 
         num_features = self.model.fc.in_features
-        self.model.fc = nn.Linear(num_features, num_classes)
+        if num_classes == 2:
+            self.model.fc = nn.Sequential(
+                nn.Linear(num_features, 1),
+                nn.Sigmoid()
+            )
+        else:
+            self.model.fc = nn.Linear(num_features, num_classes)
 
     def forward(self, x):
         return self.model(x)
@@ -75,7 +82,13 @@ class PretrainedResNet34(nn.Module):
                 param.requires_grad = False
 
         num_features = self.model.fc.in_features
-        self.model.fc = nn.Linear(num_features, num_classes)
+        if num_classes == 2:
+            self.model.fc = nn.Sequential(
+                nn.Linear(num_features, 1),
+                nn.Sigmoid()
+            )
+        else:
+            self.model.fc = nn.Linear(num_features, num_classes)
 
     def forward(self, x):
         return self.model(x)
@@ -121,17 +134,30 @@ class PretrainedAlexNet(nn.Module):
             for param in self.model.parameters():
                 param.requires_grad = False
 
-        # Numbers for hidden units taken from the official docs:
+        # Numbers for input linear dimension taken from the official docs:
         # https://pytorch.org/vision/0.9/_modules/torchvision/models/alexnet.html#alexnet
-        self.model.classifier = nn.Sequential(
-            nn.Dropout(),
-            nn.Linear(256 * 6 * 6, num_hidden_units),
-            nn.ReLU(inplace=True),
-            nn.Dropout(),
-            nn.Linear(num_hidden_units, num_hidden_units),
-            nn.ReLU(inplace=True),
-            nn.Linear(num_hidden_units, num_classes),
-        )
+        if num_classes == 2:
+            self.model.classifier = nn.Sequential(
+                nn.Dropout(),
+                nn.Linear(256 * 6 * 6, num_hidden_units),
+                nn.ReLU(inplace=True),
+                nn.Dropout(),
+                nn.Linear(num_hidden_units, num_hidden_units),
+                nn.ReLU(inplace=True),
+                nn.Linear(num_hidden_units, 1),
+                nn.Sigmoid()
+            )
+        else:
+            self.model.classifier = nn.Sequential(
+                nn.Dropout(),
+                nn.Linear(256 * 6 * 6, num_hidden_units),
+                nn.ReLU(inplace=True),
+                nn.Dropout(),
+                nn.Linear(num_hidden_units, num_hidden_units),
+                nn.ReLU(inplace=True),
+                nn.Linear(num_hidden_units, num_classes),
+            )
+
 
     def forward(self, x):
         return self.model(x)
@@ -179,16 +205,28 @@ class PretrainedVGG(nn.Module):
             for param in self.model.parameters():
                 param.requires_grad = False
 
-        # Numbers taken from the docs https://pytorch.org/vision/0.9/_modules/torchvision/models/vgg.html#vgg16_bn
-        self.model.classifier = nn.Sequential(
-            nn.Linear(512 * 7 * 7, num_hidden_units),
-            nn.ReLU(True),
-            nn.Dropout(),
-            nn.Linear(num_hidden_units, num_hidden_units),
-            nn.ReLU(True),
-            nn.Dropout(),
-            nn.Linear(num_hidden_units, num_classes),
-        )
+        # Numbers for linear input dimensions taken from the docs https://pytorch.org/vision/0.9/_modules/torchvision/models/vgg.html#vgg16_bn
+        if num_classes == 2:
+            self.model.classifier = nn.Sequential(
+                nn.Linear(512 * 7 * 7, num_hidden_units),
+                nn.ReLU(True),
+                nn.Dropout(),
+                nn.Linear(num_hidden_units, num_hidden_units),
+                nn.ReLU(True),
+                nn.Dropout(),
+                nn.Linear(num_hidden_units, 1),
+                nn.Sigmoid()
+            )
+        else:
+            self.model.classifier = nn.Sequential(
+                nn.Linear(512 * 7 * 7, num_hidden_units),
+                nn.ReLU(True),
+                nn.Dropout(),
+                nn.Linear(num_hidden_units, num_hidden_units),
+                nn.ReLU(True),
+                nn.Dropout(),
+                nn.Linear(num_hidden_units, num_classes),
+            )
 
     def forward(self, x):
         return self.model(x)
@@ -236,11 +274,17 @@ class PretrainedDenseNet121(nn.Module):
                 param.requires_grad = False
 
         num_features = self.model.classifier.in_features
-        self.model.classifier = nn.Linear(num_features, 1)
+        if num_classes == 2:
+            self.model.classifier = nn.Sequential(
+                nn.Linear(num_features, 1),
+                nn.Sigmoid()
+            )
+        else:
+            self.model.classifier = nn.Linear(num_features, num_classes)
+
 
     def forward(self, x):
-        x = self.model(x)
-        return torch.sigmoid(x)
+        return self.model(x)
 
 
 class FrozenPretrainedDenseNet121(PretrainedDenseNet121):
