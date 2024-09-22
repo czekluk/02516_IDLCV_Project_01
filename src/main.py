@@ -70,23 +70,16 @@ def main():
     testloader = dm.test_dataloader()
     
     models = [
-    FrozenPretrainedResNet18, #Lukas
-    UnfrozenPretrainedResNet18, #Lukas
     FrozenPretrainedResNet34, #Lukas
-    UnfrozenPretrainedResNet34, #Lukas
-    FrozenPretrainedVGG, #Filip
-    UnfrozenPretrainedVGG, #Filip
+    FrozenPretrainedVGG, #Lukas
     FrozenPretrainedDenseNet121, #Filip
-    UnfrozenPretrainedDenseNet121, #Filip
-    FrozenPretrainedAlexNet,  #Alex 
-    UnfrozenPretrainedAlexNet, #Alex 
 
-    BasicCNN, #Alex
-    CNNWithDropout, #Zeljko
-    CNNWithBatchNorm, #Zeljko
-    CNNWithMoreConvLayers, #Zeljko
+    BasicCNN, #Filip
+    CNNWithDropout, #Filip
+    CNNWithBatchNorm, #Alex
+    CNNWithMoreConvLayers, #Alex
     CNNWithMoreFilters, #Zeljko
-    CNNWithMoreDenseLayers, #Nandor
+    CNNWithMoreDenseLayers, #Zeljko
     CNNWithDifferentActivations, #Nandor
     CNNWithAllRegularizations, #Nandor
     FinalModel #Nandor
@@ -95,7 +88,7 @@ def main():
         {"optimizer": torch.optim.Adam, "params": {"lr": 1e-3, "weight_decay": 1e-4}},
         {"optimizer": torch.optim.SGD, "params": {"lr": 1e-2, "momentum": 0.9}}
     ]
-    epochs = [1]
+    epochs = [5,10]
     
     trainer = Trainer(models, optimizers, epochs, trainloader, testloader)
     outputs = trainer.train()
