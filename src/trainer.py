@@ -115,7 +115,7 @@ class Trainer:
 
                 optimizer.zero_grad()
                 output = model(data).view(-1)
-                loss = self.criterion(output, torch.tensor(target, dtype=torch.float32))
+                loss = self.criterion(output, target.clone().detach().float().requires_grad_(True))
                 loss.backward()
                 optimizer.step()
                 
@@ -130,7 +130,7 @@ class Trainer:
                 data, target = data.to(self.device), target.to(self.device)
                 with torch.no_grad():
                     output = model(data).view(-1)
-                test_loss.append(self.criterion(output, torch.tensor(target, dtype=torch.float32)).cpu().item())
+                test_loss.append(self.criterion(output, target.clone().detach().float().requires_grad_(True)).cpu().item())
                 predicted = (output > 0.5).float()
                 test_correct += (target==predicted).sum().cpu().item()
             out_dict['train_acc'].append(train_correct/len(self.train_loader.dataset))

@@ -4,7 +4,18 @@ from data.custom_transforms import base_transform
 import torch
 import json
 import os
-from models.pretrained_models import FrozenPretrainedResNet34, PretrainedDenseNet121
+from models.pretrained_models import (
+    FrozenPretrainedResNet18,
+    UnfrozenPretrainedResNet18,
+    FrozenPretrainedResNet34,
+    UnfrozenPretrainedResNet34,
+    FrozenPretrainedAlexNet,
+    UnfrozenPretrainedAlexNet,
+    FrozenPretrainedVGG,
+    UnfrozenPretrainedVGG,
+    FrozenPretrainedDenseNet121,
+    UnfrozenPretrainedDenseNet121,
+)
 from models.basic_models import (
     BasicCNN,
     CNNWithDropout,
@@ -59,16 +70,26 @@ def main():
     testloader = dm.test_dataloader()
     
     models = [
-    PretrainedDenseNet121,
-    BasicCNN,
-    CNNWithDropout,
-    CNNWithBatchNorm,
-    CNNWithMoreConvLayers,
-    CNNWithMoreFilters,
-    CNNWithMoreDenseLayers,
-    CNNWithDifferentActivations,
-    CNNWithAllRegularizations,
-    FinalModel
+    FrozenPretrainedResNet18, #Lukas
+    UnfrozenPretrainedResNet18, #Lukas
+    FrozenPretrainedResNet34, #Lukas
+    UnfrozenPretrainedResNet34, #Lukas
+    FrozenPretrainedVGG, #Filip
+    UnfrozenPretrainedVGG, #Filip
+    FrozenPretrainedDenseNet121, #Filip
+    UnfrozenPretrainedDenseNet121, #Filip
+    FrozenPretrainedAlexNet,  #Alex 
+    UnfrozenPretrainedAlexNet, #Alex 
+
+    BasicCNN, #Alex
+    CNNWithDropout, #Zeljko
+    CNNWithBatchNorm, #Zeljko
+    CNNWithMoreConvLayers, #Zeljko
+    CNNWithMoreFilters, #Zeljko
+    CNNWithMoreDenseLayers, #Nandor
+    CNNWithDifferentActivations, #Nandor
+    CNNWithAllRegularizations, #Nandor
+    FinalModel #Nandor
 ]
     optimizers = [
         {"optimizer": torch.optim.Adam, "params": {"lr": 1e-3, "weight_decay": 1e-4}},
