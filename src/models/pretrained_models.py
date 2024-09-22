@@ -1,5 +1,6 @@
 from torchvision import models
 import torch.nn as nn
+import torch
 from torchvision.models import ResNet18_Weights, AlexNet_Weights, VGG16_BN_Weights, DenseNet121_Weights, \
     ResNet34_Weights
 
@@ -235,10 +236,11 @@ class PretrainedDenseNet121(nn.Module):
                 param.requires_grad = False
 
         num_features = self.model.classifier.in_features
-        self.model.classifier = nn.Linear(num_features, num_classes)
+        self.model.classifier = nn.Linear(num_features, 1)
 
     def forward(self, x):
-        return self.model(x)
+        x = self.model(x)
+        return torch.sigmoid(x)
 
 
 class FrozenPretrainedDenseNet121(PretrainedDenseNet121):

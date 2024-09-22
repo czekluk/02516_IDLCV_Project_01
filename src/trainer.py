@@ -59,7 +59,7 @@ class Trainer:
                 test_loader         -   torch.utils.data.DataLoader
         """
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        self.criterion = nn.CrossEntropyLoss()
+        self.criterion = nn.BCELoss()
         self.models = models
         self.optimizer_functions = optimizer_functions
         self.epochs = epochs
@@ -114,13 +114,13 @@ class Trainer:
                 data, target = data.to(self.device), target.to(self.device)
 
                 optimizer.zero_grad()
-                output = model(data)
-                loss = self.criterion(output, target)
+                output = model(data).view(-1)
+                loss = self.criterion(output, torch.tensor(target, dtype=torch.float32))
                 loss.backward()
                 optimizer.step()
                 
                 train_loss.append(loss.item())
-                predicted = output.argmax(1)
+                predicted = (output > 0.5).float()
                 train_correct += (target==predicted).sum().cpu().item()
             
             test_loss = []
@@ -129,9 +129,9 @@ class Trainer:
             for data, target in self.test_loader:
                 data, target = data.to(self.device), target.to(self.device)
                 with torch.no_grad():
-                    output = model(data)
-                test_loss.append(self.criterion(output, target).cpu().item())
-                predicted = output.argmax(1)
+                    output = model(data).view(-1)
+                test_loss.append(self.criterion(output, torch.tensor(target, dtype=torch.float32)).cpu().item())
+                predicted = (output > 0.5).float()
                 test_correct += (target==predicted).sum().cpu().item()
             out_dict['train_acc'].append(train_correct/len(self.train_loader.dataset))
             out_dict['test_acc'].append(test_correct/len(self.test_loader.dataset))
@@ -157,7 +157,7 @@ if __name__ == "__main__":
         {"optimizer": torch.optim.Adam, "params": {"lr": 1e-3}},
         {"optimizer": torch.optim.SGD, "params": {"lr": 1e-2, "momentum": 0.9}}
     ]
-    epochs = [2]
+    epochs = [1]
     
     trainer = Trainer(models, optimizers, epochs, trainloader, testloader)
     outputs = trainer.train()
