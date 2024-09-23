@@ -1,6 +1,6 @@
 from trainer import Trainer
 from data.make_dataset import HotdogNotHotDog_DataModule
-from data.custom_transforms import base_transform
+from data.custom_transforms import base_transform, random_transform
 import torch
 import json
 import os
@@ -27,15 +27,15 @@ from models.basic_models import (
     CNNWithAllRegularizations,
     FinalModel
 )
+from visualizer import Visualizer
 PROJECT_BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-def save_results(outputs):
+def save_results(outputs, path=os.path.join(PROJECT_BASE_DIR, "results/experiments.json")):
     """
     Saves the best model from outputs (the parameters).
     Saves all of the results into a results/experiments.json
     """
-    experiments_path = os.path.join(PROJECT_BASE_DIR, "results/experiments.json")
     saved_models_path = os.path.join(PROJECT_BASE_DIR, "results/saved_models")
     # save the best model
     best_model = outputs[0]
@@ -44,7 +44,7 @@ def save_results(outputs):
     
     # save the results
     try:
-        with open(experiments_path, "r") as f:
+        with open(path, "r") as f:
             data = json.load(f)
     except FileNotFoundError:
         data = []
@@ -58,12 +58,12 @@ def save_results(outputs):
     data.extend(outputs)
     # sort the entries
     data = sorted(data, key=lambda x: x['test_acc'][-1], reverse=True)
-    with open(experiments_path, "w") as f:
+    with open(path, "w") as f:
         json.dump(data, f, indent=4)
 
 
 def main():
-    train_transform = base_transform()
+    train_transform = random_transform(horizontal=True, rotation=True, rotation_degree=30, normalize=True)
     test_transform = base_transform()
     dm = HotdogNotHotDog_DataModule(train_transform=train_transform, test_transform=test_transform)
     trainloader = dm.train_dataloader()
@@ -92,7 +92,12 @@ def main():
     
     trainer = Trainer(models, optimizers, epochs, trainloader, testloader)
     outputs = trainer.train()
-    save_results(outputs)
+    save_results(outputs, os.path.join(PROJECT_BASE_DIR, "results/experiments.json"))
+    
+    visualizer = Visualizer()
+    json_path = os.path.join(PROJECT_BASE_DIR, "results/experiments.json")
+    #save_path = os.path.join(PROJECT_BASE_DIR, "results/figures/")
+    visualizer.plot_results(json_path=json_path)
 
 if __name__ == "__main__":
     main()
