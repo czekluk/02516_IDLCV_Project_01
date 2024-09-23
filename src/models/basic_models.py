@@ -9,13 +9,10 @@ class BasicCNN(nn.Module):
         self.convolutional = nn.Sequential(
             nn.Conv2d(3, 32, 3, padding=1),  
             nn.ReLU(),
-            nn.MaxPool2d(2),
-            nn.Conv2d(32, 64, 3, padding=1),
-            nn.ReLU(),
             nn.MaxPool2d(2)
         )
         self.fully_connected = nn.Sequential(
-            nn.Linear(64*32*32, 1),  # Adjusted input size
+            nn.Linear(32*64*64, 1),  # Adjusted input size
             nn.Sigmoid()
         )
     
@@ -34,6 +31,7 @@ class CNNWithDropout(nn.Module):
             nn.Conv2d(3, 32, 5, padding=2),  # Increased kernel size to 5
             nn.ReLU(),
             nn.MaxPool2d(2),
+            nn.Dropout2d(0.5),  # Dropout layer added here
             nn.Conv2d(32, 64, 3, padding=1),
             nn.ReLU(),
             nn.MaxPool2d(2),
@@ -115,16 +113,12 @@ class CNNWithMoreFilters(nn.Module):
             nn.Conv2d(3, 64, 3, padding=1),  
             nn.ReLU(),
             nn.MaxPool2d(2),
-            nn.Conv2d(64, 128, 3, padding=1),  # Increased number of filters
+            nn.Conv2d(64, 1024, 3, padding=1),  # Increased number of filters
             nn.ReLU(),
-            nn.MaxPool2d(2),
-            nn.Conv2d(128, 256, 3, padding=1),  # Increased number of filters
-            nn.ReLU(),
-            nn.Conv2d(256, 512, 3, padding=1),  # Additional convolutional layer
-            nn.ReLU()
+            nn.MaxPool2d(2)
         )
         self.fully_connected = nn.Sequential(
-            nn.Linear(512*32*32, 1),  # Adjusted input size
+            nn.Linear(1024*32*32, 1),  # Adjusted input size
             nn.Sigmoid()
         )
     
@@ -145,16 +139,16 @@ class CNNWithMoreDenseLayers(nn.Module):
             nn.MaxPool2d(2),
             nn.Conv2d(32, 64, 3, padding=1),
             nn.ReLU(),
-            nn.MaxPool2d(2),
-            nn.Conv2d(64, 128, 3, padding=1),
-            nn.ReLU(),
-            nn.Conv2d(128, 256, 3, padding=1),  # Additional convolutional layer
-            nn.ReLU()
+            nn.MaxPool2d(2)
         )
         self.fully_connected = nn.Sequential(
-            nn.Linear(256*32*32, 128),  # Adjusted input size
+            nn.Linear(64*32*32, 128),  # Adjusted input size
             nn.ReLU(),
             nn.Linear(128, 64),  # Additional dense layer added here
+            nn.ReLU(),
+            nn.Linear(64, 64),  # Additional dense layer added here
+            nn.ReLU(),
+            nn.Linear(64, 64),  # Additional dense layer added here
             nn.ReLU(),
             nn.Linear(64, 1),
             nn.Sigmoid()
@@ -177,14 +171,10 @@ class CNNWithDifferentActivations(nn.Module):
             nn.MaxPool2d(2),
             nn.Conv2d(32, 64, 3, padding=1),
             nn.LeakyReLU(0.1),  # Changed activation function to LeakyReLU
-            nn.MaxPool2d(2),
-            nn.Conv2d(64, 128, 3, padding=1),
-            nn.ReLU(),
-            nn.Conv2d(128, 256, 3, padding=1),  # Additional convolutional layer
-            nn.LeakyReLU(0.1)  # Changed activation function to LeakyReLU
+            nn.MaxPool2d(2)
         )
         self.fully_connected = nn.Sequential(
-            nn.Linear(256*32*32, 128),  # Adjusted input size
+            nn.Linear(64*32*32, 128),  # Adjusted input size
             nn.LeakyReLU(0.1),  # Changed activation function to LeakyReLU
             nn.Linear(128, 1),
             nn.Sigmoid()
@@ -210,16 +200,12 @@ class CNNWithAllRegularizations(nn.Module):
             nn.BatchNorm2d(64),
             nn.ReLU(),
             nn.MaxPool2d(2),
-            nn.Conv2d(64, 128, 3, padding=1),
-            nn.BatchNorm2d(128),
-            nn.ReLU(),
-            nn.Conv2d(128, 256, 3, padding=1),  # Additional convolutional layer
-            nn.BatchNorm2d(256),
-            nn.ReLU(),
             nn.Dropout2d(0.5)
+         
         )
         self.fully_connected = nn.Sequential(
-            nn.Linear(256*32*32, 1),
+            nn.Linear(64*32*32, 1),
+            nn.Dropout1d(0.5),
             nn.Sigmoid()
         )
     
@@ -247,19 +233,23 @@ class FinalModel(nn.Module):
             nn.BatchNorm2d(256),
             nn.ReLU(),
             nn.MaxPool2d(2),
-            nn.Conv2d(256, 512, 3, padding=1),
-            nn.BatchNorm2d(512),
+            nn.Conv2d(256, 256, 3, padding=1),
+            nn.BatchNorm2d(256),
             nn.ReLU(),
             nn.MaxPool2d(2),
-            nn.Conv2d(512, 1024, 3, padding=1),  # Additional convolutional layer
-            nn.BatchNorm2d(1024),
+            nn.Conv2d(256, 256, 3, padding=1),  # Additional convolutional layer
+            nn.BatchNorm2d(256),
             nn.ReLU(),
             nn.Dropout2d(0.5)
         )
         self.fully_connected = nn.Sequential(
-            nn.Linear(1024*8*8, 1024),  # Adjusted input size due to additional layer and image dimension
+            nn.Linear(256*8*8, 1024),  # Adjusted input size due to additional layer and image dimension
             nn.LeakyReLU(0.1),  # Changed activation function to LeakyReLU
             nn.Linear(1024, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),  # Additional dense layer added here
+            nn.ReLU(),
+            nn.Linear(64, 64),  # Additional dense layer added here
             nn.LeakyReLU(0.1),  
             nn.Linear(64, 1),
             nn.Sigmoid()

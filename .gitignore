@@ -104,7 +104,6 @@ venv.bak/
 .mypy_cache/
 
 .DS_Store
-src/data/
 
 # trained models
 *.pth

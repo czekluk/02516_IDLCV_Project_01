@@ -4,7 +4,18 @@ from data.custom_transforms import base_transform
 import torch
 import json
 import os
-from models.pretrained_models import FrozenPretrainedResNet34, PretrainedDenseNet121
+from models.pretrained_models import (
+    FrozenPretrainedResNet18,
+    UnfrozenPretrainedResNet18,
+    FrozenPretrainedResNet34,
+    UnfrozenPretrainedResNet34,
+    FrozenPretrainedAlexNet,
+    UnfrozenPretrainedAlexNet,
+    FrozenPretrainedVGG,
+    UnfrozenPretrainedVGG,
+    FrozenPretrainedDenseNet121,
+    UnfrozenPretrainedDenseNet121,
+)
 from models.basic_models import (
     BasicCNN,
     CNNWithDropout,
@@ -59,22 +70,25 @@ def main():
     testloader = dm.test_dataloader()
     
     models = [
-    PretrainedDenseNet121,
-    BasicCNN,
-    CNNWithDropout,
-    CNNWithBatchNorm,
-    CNNWithMoreConvLayers,
-    CNNWithMoreFilters,
-    CNNWithMoreDenseLayers,
-    CNNWithDifferentActivations,
-    CNNWithAllRegularizations,
-    FinalModel
+    FrozenPretrainedResNet34, #Lukas
+    FrozenPretrainedVGG, #Lukas
+    FrozenPretrainedDenseNet121, #Filip
+
+    BasicCNN, #Filip
+    CNNWithDropout, #Filip
+    CNNWithBatchNorm, #Alex
+    CNNWithMoreConvLayers, #Alex
+    CNNWithMoreFilters, #Zeljko
+    CNNWithMoreDenseLayers, #Zeljko
+    CNNWithDifferentActivations, #Nandor
+    CNNWithAllRegularizations, #Nandor
+    FinalModel #Nandor
 ]
     optimizers = [
         {"optimizer": torch.optim.Adam, "params": {"lr": 1e-3, "weight_decay": 1e-4}},
         {"optimizer": torch.optim.SGD, "params": {"lr": 1e-2, "momentum": 0.9}}
     ]
-    epochs = [1]
+    epochs = [5,10]
     
     trainer = Trainer(models, optimizers, epochs, trainloader, testloader)
     outputs = trainer.train()
