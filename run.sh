@@ -11,7 +11,7 @@
 # ## -- set walltime limit: hh:mm --  maximum 24 hours for GPU-queues right now
 # BSUB -W 03:00
 # request 5GB of system-memory
-# BSUB -R "rusage[mem=5GB]"
+# BSUB -R "rusage[mem=50GB]"
 # ## -- set the email address --
 # please uncomment the following line and put in your e-mail address,
 # if you want to receive e-mail notifications on a non-default address
@@ -26,12 +26,13 @@
 # BSUB -e gpu_%J.err
 # #-- end of LSF options --
 
-nvidia-smi
+
 # Load the cuda module
 
 
-module unload python
+module unload python3
 module load python3
+# module swap python3/3.12.4
 unset PYTHONPATH
 unset PYTHONHOME
 # pip3 install torch==1.13.1+cu116 torchvision==0.14.1+cu116 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu116
@@ -39,8 +40,8 @@ module load matplotlib
 pip3 install tqdm 
 module load cuda/11.6 
 module load numpy 
-
-/appl/cuda/11.6.0/samples/bin/x86_64/linux/release/deviceQuery
+nvidia-smi
+# /appl/cuda/11.6.0/samples/bin/x86_64/linux/release/deviceQuery
 
 # Define the log file
 LOG_FILE="experiment_logs.txt"

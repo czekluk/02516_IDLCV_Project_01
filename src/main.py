@@ -43,11 +43,12 @@ def save_results(outputs, path=os.path.join(PROJECT_BASE_DIR, "results/experimen
                os.path.join(saved_models_path, f"{best_model['test_acc'][-1]:.4f}-{best_model['model_name']}.pth"))
     
     # save the results
-    try:
-        with open(path, "r") as f:
+    data= []
+    with open(path, "r") as f:
+        try:
             data = json.load(f)
-    except FileNotFoundError:
-        data = []
+        except:
+            data = []
     # stringify the model and optimizer from the outputs as they are not json serializable
     for output in outputs:
         if "model" in output:
@@ -70,14 +71,14 @@ def main():
     testloader = dm.test_dataloader()
     
     models = [
-    FrozenPretrainedResNet34, #Lukas
-    FrozenPretrainedVGG, #Lukas
-    FrozenPretrainedDenseNet121, #Filip
+    UnfrozenPretrainedResNet34, #Lukas
+    UnfrozenPretrainedVGG, #Lukas
+    UnfrozenPretrainedDenseNet121, #Filip
 
     BasicCNN, #Filip
     CNNWithDropout, #Filip
     CNNWithBatchNorm, #Alex
-    CNNWithMoreConvLayers, #Alex
+    CNNWithMoreConvLayers, #Alex3
     CNNWithMoreFilters, #Zeljko
     CNNWithMoreDenseLayers, #Zeljko
     CNNWithDifferentActivations, #Nandor
@@ -85,10 +86,10 @@ def main():
     FinalModel #Nandor
 ]
     optimizers = [
-        {"optimizer": torch.optim.Adam, "params": {"lr": 1e-3, "weight_decay": 1e-4}},
-        {"optimizer": torch.optim.SGD, "params": {"lr": 1e-2, "momentum": 0.9}}
+        {"optimizer": torch.optim.Adam, "params": {"lr": 1e-3, "weight_decay": 1e-3}},
+        {"optimizer": torch.optim.SGD, "params": {"lr": 1e-2, "momentum": 0.9, "weight_decay": 1e-2}}
     ]
-    epochs = [5,10]
+    epochs = [35]
     
     trainer = Trainer(models, optimizers, epochs, trainloader, testloader)
     outputs = trainer.train()

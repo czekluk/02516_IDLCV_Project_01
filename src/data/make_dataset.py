@@ -47,7 +47,7 @@ class HotdogNotHotDog_DataModule:
     def __init__(
         self,
         data_path=DATA_DIR,
-        batch_size: int = 64,
+        batch_size: int = 256,
         train_transform=transforms.ToTensor(),
         test_transform=transforms.ToTensor(),
     ):
@@ -81,7 +81,7 @@ class HotdogNotHotDog_DataModule:
         return DataLoader(
             self.train_dataset,
             batch_size=self.batch_size,
-            shuffle=shuffle,
+            shuffle=True,
             num_workers=3,
         )
 
@@ -97,7 +97,7 @@ class HotdogNotHotDog_DataModule:
         return DataLoader(
             self.test_dataset,
             batch_size=self.batch_size,
-            shuffle=shuffle,
+            shuffle=True,
             num_workers=3,
         )
 

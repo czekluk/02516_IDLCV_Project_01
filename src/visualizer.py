@@ -34,9 +34,31 @@ class Visualizer():
             plt.savefig(save_path + f"plot_{time}.png")
             
         plt.show()
+    def rank_models(self, json_path=os.path.join(PROJECT_BASE_DIR, "results/experiments_to_plot.json"), save_path="results/ranked_models.json"):
+        """Rank the models based on the final test accuracy and save the ranking to a json file
         
+        Args:
+            json_path (str, optional): Path to the json file containing the results. Defaults to "results/experiments_to_plot.json".
+            save_path (str, optional): Path to save the ranked models json file. Defaults to "results/ranked_models.json".
+        """
+        with open(json_path, "r") as f:
+            data = json.load(f)
+        
+        ranked_data = sorted(data, key=lambda x: x["test_acc"][-1], reverse=True)
+        
+        ranked_models = [{"model_name": entry["model_name"], "final_test_acc": entry["test_acc"][-1]} for entry in ranked_data]
+        
+        with open(save_path, "w") as f:
+            json.dump(ranked_models, f, indent=4)
+        
+        print(f"Ranked models saved to {save_path}")
+
+     
 if __name__ == "__main__":
+       # Example usage
+    
     visualizer = Visualizer()
+    visualizer.rank_models( save_path=os.path.join(PROJECT_BASE_DIR, "results/ranked_models.json"))
     json_path = os.path.join(PROJECT_BASE_DIR, "results/experiments_to_plot.json")
     save_path = os.path.join(PROJECT_BASE_DIR, "results/figures/")
     visualizer.plot_results(json_path=json_path, save_path=save_path)

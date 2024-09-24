@@ -1,0 +1,98 @@
+[
+    {
+        "model_name": "UnfrozenPretrainedVGG",
+        "final_test_acc": 0.8152524167561761
+    },
+    {
+        "model_name": "UnfrozenPretrainedDenseNet121",
+        "final_test_acc": 0.7712137486573577
+    },
+    {
+        "model_name": "CNNWithMoreConvLayers",
+        "final_test_acc": 0.7330827067669173
+    },
+    {
+        "model_name": "CNNWithMoreConvLayers",
+        "final_test_acc": 0.7266380236305048
+    },
+    {
+        "model_name": "UnfrozenPretrainedResNet34",
+        "final_test_acc": 0.7255639097744361
+    },
+    {
+        "model_name": "CNNWithDifferentActivations",
+        "final_test_acc": 0.7244897959183674
+    },
+    {
+        "model_name": "CNNWithMoreDenseLayers",
+        "final_test_acc": 0.7223415682062299
+    },
+    {
+        "model_name": "CNNWithDropout",
+        "final_test_acc": 0.7110633727175081
+    },
+    {
+        "model_name": "CNNWithDifferentActivations",
+        "final_test_acc": 0.700859291084855
+    },
+    {
+        "model_name": "CNNWithMoreDenseLayers",
+        "final_test_acc": 0.6659505907626209
+    },
+    {
+        "model_name": "UnfrozenPretrainedVGG",
+        "final_test_acc": 0.6428571428571429
+    },
+    {
+        "model_name": "UnfrozenPretrainedResNet34",
+        "final_test_acc": 0.5864661654135338
+    },
+    {
+        "model_name": "UnfrozenPretrainedDenseNet121",
+        "final_test_acc": 0.5365198711063373
+    },
+    {
+        "model_name": "BasicCNN",
+        "final_test_acc": 0.5241675617615468
+    },
+    {
+        "model_name": "BasicCNN",
+        "final_test_acc": 0.5193340494092373
+    },
+    {
+        "model_name": "CNNWithBatchNorm",
+        "final_test_acc": 0.5193340494092373
+    },
+    {
+        "model_name": "CNNWithMoreFilters",
+        "final_test_acc": 0.5193340494092373
+    },
+    {
+        "model_name": "FinalModel",
+        "final_test_acc": 0.5193340494092373
+    },
+    {
+        "model_name": "CNNWithBatchNorm",
+        "final_test_acc": 0.518796992481203
+    },
+    {
+        "model_name": "CNNWithAllRegularizations",
+        "final_test_acc": 0.518796992481203
+    },
+    {
+        "model_name": "CNNWithDropout",
+        "final_test_acc": 0.4849624060150376
+    },
+    {
+        "model_name": "CNNWithMoreFilters",
+        "final_test_acc": 0.4806659505907626
+    },
+    {
+        "model_name": "CNNWithAllRegularizations",
+        "final_test_acc": 0.4806659505907626
+    },
+    {
+        "model_name": "FinalModel",
+        "final_test_acc": 0.4806659505907626
+    }
+]
