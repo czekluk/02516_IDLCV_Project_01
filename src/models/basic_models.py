@@ -267,37 +267,33 @@ class HotdogCNN(nn.Module):
         self.convolutional = nn.Sequential(
             # Input: 3x256x256
             # Layer 1
-            nn.Conv2d(3, 32, 7, padding=3),
-            nn.BatchNorm2d(32),
+            nn.Conv2d(3, 32, 5, padding=2),
+            nn.Dropout2d(0.05),
             nn.ReLU(),
-            nn.Dropout2d(0.15),
             
             # Pooling layer: 32x128x128
             nn.MaxPool2d(2),
             
             # Layer 2
             nn.Conv2d(32, 64, 5, padding=2),
-            nn.BatchNorm2d(64),
+            nn.Dropout2d(0.05),
             nn.ReLU(),
-            nn.Dropout2d(0.15),
             
             # Pooling layer: 64x64x64
             nn.MaxPool2d(2),
             
             # Layer 3
             nn.Conv2d(64, 128, 3, padding=1),
-            nn.BatchNorm2d(128),
+            nn.Dropout2d(0.05),
             nn.ReLU(),
-            nn.Dropout2d(0.15),
             
             # Pooling layer: 128x32x32
             nn.MaxPool2d(2),
             
             # Layer 4
             nn.Conv2d(128, 256, 3, padding=1),  # Additional convolutional layer
-            nn.BatchNorm2d(256),
+            nn.Dropout2d(0.05),
             nn.ReLU(),
-            nn.Dropout2d(0.15),
             
             # Pooling layer: 256x16x16
             nn.MaxPool2d(2),
@@ -305,13 +301,11 @@ class HotdogCNN(nn.Module):
         
         self.fully_connected = nn.Sequential(
             nn.Linear(256*16*16, 1),  # Adjusted input size
-            nn.Dropout1d(0.1),
             nn.Sigmoid()
         )
     
     def forward(self, x):
         x = self.convolutional(x)
-        print(x.size())
         x = x.view(x.size(0), -1)
         x = self.fully_connected(x)
         return x

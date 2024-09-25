@@ -25,7 +25,8 @@ from models.basic_models import (
     CNNWithMoreDenseLayers,
     CNNWithDifferentActivations,
     CNNWithAllRegularizations,
-    FinalModel
+    FinalModel,
+    HotdogCNN
 )
 from visualizer import Visualizer
 PROJECT_BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,11 +44,13 @@ def save_results(outputs, path=os.path.join(PROJECT_BASE_DIR, "results/experimen
                os.path.join(saved_models_path, f"{best_model['test_acc'][-1]:.4f}-{best_model['model_name']}.pth"))
     
     # save the results
-    try:
-        with open(path, "r") as f:
+    data= []
+    with open(path, "r") as f:
+        try:
             data = json.load(f)
-    except FileNotFoundError:
-        data = []
+        except:
+            data = []
+
     # stringify the model and optimizer from the outputs as they are not json serializable
     for output in outputs:
         if "model" in output:
@@ -63,32 +66,34 @@ def save_results(outputs, path=os.path.join(PROJECT_BASE_DIR, "results/experimen
 
 
 def main():
-    train_transform = random_transform(horizontal=True, rotation=True, rotation_degree=30, normalize=True)
-    test_transform = base_transform()
+    train_transform = random_transform(rotation=True, rotation_degree=30,normalize=True,size=256)
+    # train_transform = base_transform(normalize=True,size=256)
+    test_transform = base_transform(normalize=True,size=256)
     dm = HotdogNotHotDog_DataModule(train_transform=train_transform, test_transform=test_transform)
     trainloader = dm.train_dataloader()
     testloader = dm.test_dataloader()
     
     models = [
-    FrozenPretrainedResNet34, #Lukas
-    FrozenPretrainedVGG, #Lukas
-    FrozenPretrainedDenseNet121, #Filip
+    # FrozenPretrainedResNet34, #Lukas
+    # FrozenPretrainedVGG, #Lukas
+    # FrozenPretrainedDenseNet121, #Filip
 
-    BasicCNN, #Filip
-    CNNWithDropout, #Filip
-    CNNWithBatchNorm, #Alex
-    CNNWithMoreConvLayers, #Alex
-    CNNWithMoreFilters, #Zeljko
-    CNNWithMoreDenseLayers, #Zeljko
-    CNNWithDifferentActivations, #Nandor
-    CNNWithAllRegularizations, #Nandor
-    FinalModel #Nandor
+    # BasicCNN, #Filip
+    # CNNWithDropout, #Filip
+    # CNNWithBatchNorm, #Alex
+    # CNNWithMoreConvLayers, #Alex
+    # CNNWithMoreFilters, #Zeljko
+    # CNNWithMoreDenseLayers, #Zeljko
+    # CNNWithDifferentActivations, #Nandor
+    # CNNWithAllRegularizations, #Nandor
+    # FinalModel #Nandor
+    HotdogCNN
 ]
     optimizers = [
-        {"optimizer": torch.optim.Adam, "params": {"lr": 1e-3, "weight_decay": 1e-4}},
-        {"optimizer": torch.optim.SGD, "params": {"lr": 1e-2, "momentum": 0.9}}
+        {"optimizer": torch.optim.Adam, "params": {"lr": 1e-3, "weight_decay": 1e-4}}
+        # {"optimizer": torch.optim.SGD, "params": {"lr": 1e-2, "momentum": 0.9}}
     ]
-    epochs = [5,10]
+    epochs = [20]
     
     trainer = Trainer(models, optimizers, epochs, trainloader, testloader)
     outputs = trainer.train()
@@ -97,7 +102,7 @@ def main():
     visualizer = Visualizer()
     json_path = os.path.join(PROJECT_BASE_DIR, "results/experiments.json")
     #save_path = os.path.join(PROJECT_BASE_DIR, "results/figures/")
-    visualizer.plot_results(json_path=json_path)
+    # visualizer.plot_results(json_path=json_path)
 
 if __name__ == "__main__":
     main()
