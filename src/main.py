@@ -17,16 +17,14 @@ from models.pretrained_models import (
     UnfrozenPretrainedDenseNet121,
 )
 from models.basic_models import (
-    BasicCNN,
-    CNNWithDropout,
-    CNNWithBatchNorm,
-    CNNWithMoreConvLayers,
-    CNNWithMoreFilters,
-    CNNWithMoreDenseLayers,
-    CNNWithDifferentActivations,
-    CNNWithAllRegularizations,
-    FinalModel,
-    HotdogCNN
+    WithoutMaxPoolCNN,
+    BaseCNN,
+    BatchNormCNN,
+    DropoutCNN,
+    MoreDropoutCNN,
+    DropoutBatchNormCNN,
+    DeepCNN,
+    DeepDropoutCNN
 )
 from visualizer import Visualizer
 PROJECT_BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -78,16 +76,14 @@ def main():
     # FrozenPretrainedVGG, #Lukas
     # FrozenPretrainedDenseNet121, #Filip
 
-    # BasicCNN, #Filip
-    # CNNWithDropout, #Filip
-    # CNNWithBatchNorm, #Alex
-    # CNNWithMoreConvLayers, #Alex
-    # CNNWithMoreFilters, #Zeljko
-    # CNNWithMoreDenseLayers, #Zeljko
-    # CNNWithDifferentActivations, #Nandor
-    # CNNWithAllRegularizations, #Nandor
-    # FinalModel #Nandor
-    HotdogCNN
+    WithoutMaxPoolCNN,
+    BaseCNN,
+    BatchNormCNN,
+    DropoutCNN,
+    MoreDropoutCNN,
+    DropoutBatchNormCNN,
+    DeepCNN,
+    DeepDropoutCNN
 ]
     optimizers = [
         {"optimizer": torch.optim.Adam, "params": {"lr": 1e-3, "weight_decay": 1e-4}}
