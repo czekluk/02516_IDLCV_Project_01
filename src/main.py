@@ -72,9 +72,9 @@ def main():
     testloader = dm.test_dataloader()
     
     models = [
-    FrozenPretrainedResNet34, #Lukas
-    FrozenPretrainedVGG, #Lukas
-    FrozenPretrainedDenseNet121, #Filip
+    # FrozenPretrainedResNet34, #Lukas
+    # FrozenPretrainedVGG, #Lukas
+    # FrozenPretrainedDenseNet121, #Filip
 
     WithoutMaxPoolCNN,
     BaseCNN,
@@ -86,8 +86,8 @@ def main():
     DeepDropoutCNN
 ]
     optimizers = [
-        {"optimizer": torch.optim.Adam, "params": {"lr": 1e-3, "weight_decay": 1e-4}},
-        {"optimizer": torch.optim.SGD, "params": {"lr": 1e-2, "momentum": 0.9}}
+        {"optimizer": torch.optim.Adam, "params": {"lr": 1e-3, "weight_decay": 1e-4}}
+        # {"optimizer": torch.optim.SGD, "params": {"lr": 1e-2, "momentum": 0.9}}
     ]
     epochs = [20]
     

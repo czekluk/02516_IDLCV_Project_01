@@ -4,7 +4,7 @@ import PIL.Image as Image
 import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
 import numpy as np
-from data.custom_transforms import random_transform, base_transform
+from .custom_transforms import random_transform, base_transform
 
 from torch.utils.data import DataLoader, Dataset
 
@@ -125,14 +125,14 @@ class HotdogNotHotDog_DataModule:
         """Plot the first batch of training examples"""
         images, labels = next(iter(trainloader))
 
-        plt.figure(figsize=(20, 10))
+        plt.figure(figsize=(10, 20))
 
         for i in range(self.batch_size // 2):
-            plt.subplot(self.batch_size // 3 + 1, self.batch_size // 3, i + 1)
+            plt.subplot(self.batch_size // 2 + 1, self.batch_size // 5, i + 1)
             plt.imshow(np.swapaxes(np.swapaxes(images[i].numpy(), 0, 2), 0, 1))
-            plt.title(["hotdog", "not hotdog"][labels[i].item()])
+            plt.title(["✔️", "X"][labels[i].item()])
             plt.axis("off")
-
+            
     def __repr__(self):
         return (
             f"HotdogNotHotDog DataModule with batch size {self.batch_size}\n"
@@ -152,7 +152,7 @@ if __name__ == "__main__":
 
     img_size = 128
     train_transform = random_transform(
-        size=img_size, horizontal=True, vertical=True, rotation=True, normalize=False
+        size=img_size, horizontal=True, vertical=True, rotation=True, rotation_degree=60, normalize=False
     )
     test_transform = base_transform(size=img_size, normalize=False)
 
@@ -163,13 +163,4 @@ if __name__ == "__main__":
     trainloader = dm.train_dataloader()
     testloader = dm.test_dataloader()
 
-    images, labels = next(iter(trainloader))
-    plt.figure(figsize=(20, 10))
-
-    for i in range(21):
-        plt.subplot(5, 7, i + 1)
-        plt.imshow(np.swapaxes(np.swapaxes(images[i].numpy(), 0, 2), 0, 1))
-        plt.title(["hotdog", "not hotdog"][labels[i].item()])
-        plt.axis("off")
-    
-    plt.show()
+    dm.plot_examples()

@@ -96,7 +96,7 @@ class BatchNormCNN(nn.Module):
             
             # Layer 2
             nn.Conv2d(32, 64, 5, padding=2),
-            nn.BatchNorm2d(64),
+            nn.Dropout2d(0.05),
             nn.ReLU(),
             
             # Pooling layer: 64x64x64
@@ -104,7 +104,7 @@ class BatchNormCNN(nn.Module):
             
             # Layer 3
             nn.Conv2d(64, 128, 3, padding=1),
-            nn.BatchNorm2d(128),
+            nn.Dropout2d(0.05),
             nn.ReLU(),
             
             # Pooling layer: 128x32x32
@@ -112,7 +112,7 @@ class BatchNormCNN(nn.Module):
             
             # Layer 4
             nn.Conv2d(128, 256, 3, padding=1),  # Additional convolutional layer
-            nn.BatchNorm2d(256),
+            nn.Dropout2d(0.05),
             nn.ReLU(),
             
             # Pooling layer: 256x16x16
