@@ -9,6 +9,8 @@ from models.pretrained_models import (
     UnfrozenPretrainedResNet18,
     FrozenPretrainedResNet34,
     UnfrozenPretrainedResNet34,
+    FrozenPretrainedResNet101,
+    UnfrozenPretrainedResNet101,
     FrozenPretrainedAlexNet,
     UnfrozenPretrainedAlexNet,
     FrozenPretrainedVGG,
@@ -63,32 +65,33 @@ def save_results(outputs, path=os.path.join(PROJECT_BASE_DIR, "results/experimen
 
 
 def main():
-    train_transform = random_transform(horizontal=True, rotation=True, rotation_degree=30, normalize=True)
-    test_transform = base_transform()
+    train_transform = random_transform(horizontal=True, rotation=True, rotation_degree=30, normalize=True, size=256)
+    test_transform = base_transform(size=256)
     dm = HotdogNotHotDog_DataModule(train_transform=train_transform, test_transform=test_transform)
     trainloader = dm.train_dataloader()
     testloader = dm.test_dataloader()
     
     models = [
-    FrozenPretrainedResNet34, #Lukas
-    FrozenPretrainedVGG, #Lukas
-    FrozenPretrainedDenseNet121, #Filip
+        FrozenPretrainedResNet101, #Lukas
+        FrozenPretrainedVGG, #Lukas
+        FrozenPretrainedDenseNet121, #Filip
 
-    BasicCNN, #Filip
-    CNNWithDropout, #Filip
-    CNNWithBatchNorm, #Alex
-    CNNWithMoreConvLayers, #Alex
-    CNNWithMoreFilters, #Zeljko
-    CNNWithMoreDenseLayers, #Zeljko
-    CNNWithDifferentActivations, #Nandor
-    CNNWithAllRegularizations, #Nandor
-    FinalModel #Nandor
-]
-    optimizers = [
-        {"optimizer": torch.optim.Adam, "params": {"lr": 1e-3, "weight_decay": 1e-4}},
-        {"optimizer": torch.optim.SGD, "params": {"lr": 1e-2, "momentum": 0.9}}
+        # BasicCNN, #Filip
+        # CNNWithDropout, #Filip
+        # CNNWithBatchNorm, #Alex
+        # CNNWithMoreConvLayers, #Alex
+        # CNNWithMoreFilters, #Zeljko
+        # CNNWithMoreDenseLayers, #Zeljko
+        # CNNWithDifferentActivations, #Nandor
+        # CNNWithAllRegularizations, #Nandor
+        # FinalModel #Nandor
     ]
-    epochs = [5,10]
+    optimizers = [
+        {"optimizer": torch.optim.Adam, "params": {"lr": 1e-3}},
+        # {"optimizer": torch.optim.Adam, "params": {"lr": 1e-3, "weight_decay": 1e-2}},
+        #{"optimizer": torch.optim.SGD, "params": {"lr": 1e-2, "momentum": 0.9}}
+    ]
+    epochs = [10]
     
     trainer = Trainer(models, optimizers, epochs, trainloader, testloader)
     outputs = trainer.train()

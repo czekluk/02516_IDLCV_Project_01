@@ -29,6 +29,19 @@ C - Lukas
 D - Filip
 E - Alex
 
+**Training Plan:**
+
+Get a baseline of different architectures:
+- custom basic CNN
+- VGG
+- ResNet
+- DenseNet
+- Inception?
+--> what are results?, are they overfitting?, are they learning something?
+
+Pick architecture that is most promisiong based on results
+- add regularisation, add depth, add batchnorm, add weight-decay, tune parameters
+
 Deadline 1st part: Sunday morning 10AM 
 
 Deadline: 27.09.2024 at 17:00

@@ -2,7 +2,7 @@ from torchvision import models
 import torch.nn as nn
 import torch
 from torchvision.models import ResNet18_Weights, AlexNet_Weights, VGG16_BN_Weights, DenseNet121_Weights, \
-    ResNet34_Weights
+    ResNet34_Weights, ResNet101_Weights
 
 """
 This file contains different pretrained models. Each model has its base class with
@@ -112,6 +112,62 @@ class UnfrozenPretrainedResNet34(PretrainedResNet34):
         be further trained.
         """
         super(UnfrozenPretrainedResNet34, self).__init__(
+            fine_tuning=False,
+            num_classes=num_classes
+        )
+
+class PretrainedResNet101(nn.Module):
+    def __init__(self, fine_tuning: bool = False, num_classes: int = 2):
+        """
+        Initializes the pre-trained ResNet34Model with specified arguments.
+        Args:
+            fine_tuning (bool): If True, freezes convolutional layer weights (fine-tuning mode).
+            num_classes (int): Number of classes for the output layer.
+        """
+        super(PretrainedResNet101, self).__init__()
+
+        self.model = models.resnet101(weights=ResNet101_Weights.IMAGENET1K_V1, progress=True)
+
+        if fine_tuning:
+            for param in self.model.parameters():
+                param.requires_grad = False
+
+        num_features = self.model.fc.in_features
+        if num_classes == 2:
+            self.model.fc = nn.Sequential(
+                nn.Linear(num_features, 1024),
+                nn.ReLU(),
+                nn.Linear(1024, 512),
+                nn.Dropout(p=0.2),
+                nn.ReLU(),
+                nn.Linear(512, 1),
+                nn.Sigmoid()
+            )
+        else:
+            self.model.fc = nn.Linear(num_features, num_classes)
+
+    def forward(self, x):
+        return self.model(x)
+
+
+class FrozenPretrainedResNet101(PretrainedResNet101):
+    def __init__(self, num_classes: int = 2):
+        """
+        Initializes pre-trained ResNet34 model in the fine-tuning mode, where the convolutional layers are frozen.
+        """
+        super(FrozenPretrainedResNet101, self).__init__(
+            fine_tuning=True,
+            num_classes=num_classes
+        )
+
+
+class UnfrozenPretrainedResNet101(PretrainedResNet101):
+    def __init__(self, num_classes: int = 2):
+        """
+        Initializes pre-trained ResNet34 model in non fine-tuning mode, where the convolutional layers are NOT frozen and can
+        be further trained.
+        """
+        super(UnfrozenPretrainedResNet101, self).__init__(
             fine_tuning=False,
             num_classes=num_classes
         )
