@@ -7,7 +7,12 @@ import matplotlib.pyplot as plt
 from data.make_dataset import HotdogNotHotDog_DataModule
 from data.custom_transforms import base_transform
 from torchvision.models import VGG19_Weights
+from models.basic_models import BaseCNN
 import cv2
+import os
+
+PROJECT_BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class SaliencyExplainer:
     # https://medium.datadriveninvestor.com/visualizing-neural-networks-using-saliency-maps-in-pytorch-289d8e244ab4
@@ -19,14 +24,14 @@ class SaliencyExplainer:
         for param in self.model.parameters():
             param.requires_grad = False
 
-    def explain(self, image: torch.Tensor, resize=False, normalize=False, size=128):
+    def explain(self, image: torch.Tensor, resize=False, normalize=False, size=256):
         """ Explains classification of an image using saliency maps
 
         Args:
             image (torch.Tensor): Image to be explained by saliency maps. Has to be of format (B,C,H,W)
             resize (bool, optional, Default: False): Enables resizing of image to input dimension of model.
             normalize (bool, optional, Default: False): Enables normalization of image.
-            size (int, optional, Default: 224): SIze used for resizing.
+            size (int, optional, Default: 256): SIze used for resizing.
         
         Returns:
             saliency_map (torch.Tensor): Computed saliency map
@@ -51,14 +56,56 @@ class SaliencyExplainer:
 
         scores = self.model(image)
 
+        # get class with highest prediction
         score_max_idx = scores.argmax()
         score_max = scores[0,score_max_idx]
 
+        # backward propagate the gradient
         score_max.backward()
 
+        # get maximum gradient per channel
         saliency_map, _ = torch.max(image.grad.data.abs(), dim=1)
 
         return saliency_map
+    
+    def explain_smoothgrad(self, image: torch.Tensor, resize: bool = False, normalize: bool = False, size=256, n_avg=20, std=0.05):
+        # check for correct input datatypes
+        assert torch.is_tensor(image) == True
+        assert len(image.shape) == 4
+
+        # apply transform if needed
+        if resize == True:
+            resize_transform = T.Resize((size,size))
+            image = resize_transform(image)
+
+        if normalize == True:
+            norm_transform = T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+            image = norm_transform(image)
+
+        # calculate saliency map
+        self.model.eval()
+
+        image_original = image
+        mean = 0
+
+        for idx in range(n_avg):
+            image = image_original + torch.randn(image_original.size()) * std + mean
+
+            image.requires_grad_()
+
+            scores = self.model(image)
+
+            score_max_idx = scores.argmax()
+            score_max = scores[0,score_max_idx]
+
+            score_max.backward()
+            if idx == 0:
+                saliency_map, _ = torch.max(image.grad.data.abs(), dim=1)
+            else:
+                saliency_map_temp, _ = torch.max(image.grad.data.abs(), dim=1)
+                saliency_map += saliency_map_temp
+
+        return saliency_map/n_avg
     
     def show_image(self, saliency_map: torch.Tensor, overlay: bool = False, 
                    image: torch.Tensor = torch.empty((128,128)),
@@ -126,15 +173,22 @@ class SaliencyExplainer:
 
 if __name__ == "__main__":
     model = torchvision.models.vgg19(weights=VGG19_Weights.IMAGENET1K_V1)
+    # model = BaseCNN()
+    # model_path = os.path.join(PROJECT_BASE_DIR, "results/saved_models/Baseline_BaseCNN-2024-9-26_11-0-35-0.7444-BaseCNN.pth")
+    # model.load_state_dict(torch.load(model_path, weights_only=True))
 
-    test_transform = base_transform()
-    dm = HotdogNotHotDog_DataModule(test_transform=test_transform, batch_size=1)
+    test_transform = base_transform(normalize=False, size=256)
+    dm = HotdogNotHotDog_DataModule(test_transform=test_transform, batch_size=10)
     testloader = dm.test_dataloader()
 
     img, _ = next(iter(testloader))
+    img = img[1,:,:,:]
+    img = torch.unsqueeze(img, 0)
 
     explainer = SaliencyExplainer(model)
 
-    sal_map = explainer.explain(img, resize=True, size=224)
+    # sal_map = explainer.explain_smoothgrad(img,normalize=True, n_avg=20, std=0.1)
+    sal_map = explainer.explain(img,normalize=True)
 
     explainer.show_image(sal_map, overlay=True, image=img, save=True, hist_eq=True)
+    explainer.show_image(sal_map, image=img)
