@@ -2,7 +2,7 @@ from torchvision import models
 import torch.nn as nn
 import torch
 from torchvision.models import ResNet18_Weights, AlexNet_Weights, VGG16_BN_Weights, DenseNet121_Weights, \
-    ResNet34_Weights
+    ResNet34_Weights, VGG11_Weights
 
 """
 This file contains different pretrained models. Each model has its base class with
@@ -307,4 +307,72 @@ class UnfrozenPretrainedDenseNet121(PretrainedDenseNet121):
         super(UnfrozenPretrainedDenseNet121, self).__init__(
             fine_tuning=False,
             num_classes=num_classes
+        )
+
+class PretrainedVGG11(nn.Module):
+    def __init__(self, fine_tuning: bool = False, num_classes: int = 2, num_hidden_units: int = 4096):
+        """
+        Initializes the pretrained VGG16 with specified arguments.
+        Args:
+            fine_tuning (bool): If True, freezes convolutional layer weights (fine-tuning mode).
+            num_classes (int): Number of classes for the output layer.
+            num_hidden_units (int): Number of hidden units in the fully-connected layer.
+        """
+        super(PretrainedVGG11, self).__init__()
+
+        self.model = models.vgg11(weights=VGG11_Weights.IMAGENET1K_V1, progress=True)
+
+        if fine_tuning:
+            for param in self.model.parameters():
+                param.requires_grad = False
+
+        # Numbers for linear input dimensions taken from the docs https://pytorch.org/vision/0.9/_modules/torchvision/models/vgg.html#vgg16_bn
+        if num_classes == 2:
+            self.model.classifier = nn.Sequential(
+                nn.Linear(512 * 7 * 7, num_hidden_units),
+                nn.ReLU(True),
+                nn.Dropout(),
+                nn.Linear(num_hidden_units, num_hidden_units),
+                nn.ReLU(True),
+                nn.Dropout(),
+                nn.Linear(num_hidden_units, 1),
+                nn.Sigmoid()
+            )
+        else:
+            self.model.classifier = nn.Sequential(
+                nn.Linear(512 * 7 * 7, num_hidden_units),
+                nn.ReLU(True),
+                nn.Dropout(),
+                nn.Linear(num_hidden_units, num_hidden_units),
+                nn.ReLU(True),
+                nn.Dropout(),
+                nn.Linear(num_hidden_units, num_classes),
+            )
+
+    def forward(self, x):
+        return self.model(x)
+
+
+class FrozenPretrainedVGG11(PretrainedVGG11):
+    def __init__(self, num_classes: int = 2, num_hidden_units: int = 4096):
+        """
+        Initializes pre-trained VGG16 model in the fine-tuning mode, where the convolutional layers are frozen.
+        """
+        super(FrozenPretrainedVGG11, self).__init__(
+            fine_tuning=True,
+            num_classes=num_classes,
+            num_hidden_units=num_hidden_units
+        )
+
+
+class UnfrozenPretrainedVGG11(PretrainedVGG11):
+    def __init__(self, num_classes: int = 2, num_hidden_units: int = 4096):
+        """
+        Initializes pre-trained VGG16 model in non fine-tuning mode, where the convolutional layers are NOT frozen and can
+        be further trained.
+        """
+        super(UnfrozenPretrainedVGG11, self).__init__(
+            fine_tuning=False,
+            num_classes=num_classes,
+            num_hidden_units=num_hidden_units
         )

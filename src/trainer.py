@@ -6,7 +6,7 @@ from data.make_dataset import HotdogNotHotDog_DataModule
 from data.custom_transforms import base_transform
 from typing import List
 from torch.utils.data import DataLoader
-
+import datetime
 
 class DummyNet(nn.Module):
     """
@@ -47,7 +47,8 @@ class DummyNet(nn.Module):
 class Trainer:
     
     def __init__(self, models: List[nn.Module], optimizer_functions: List[dict], 
-                 epochs: int, train_loader: DataLoader, test_loader: DataLoader) -> None:
+                 epochs: int, train_loader: DataLoader, test_loader: DataLoader,
+                 train_transform, description) -> None:
         """
         Class for training different models with different optimizers and different numbers of epochs.
         
@@ -58,6 +59,8 @@ class Trainer:
                 train_loader        -   torch.utils.data.DataLoader
                 test_loader         -   torch.utils.data.DataLoader
         """
+        assert len(models) == len(description)
+
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         self.criterion = nn.BCELoss()
         self.models = models
@@ -65,6 +68,8 @@ class Trainer:
         self.epochs = epochs
         self.train_loader = train_loader
         self.test_loader = test_loader
+        self.train_transform = train_transform
+        self.description = description
     
     
     def train(self) -> List[dict]:
@@ -76,16 +81,22 @@ class Trainer:
                     after the final epoch.
         """
         outputs = []
+        count = 0
         for network in self.models:
             for optimizer_config in self.optimizer_functions:
                 for epoch_no in self.epochs:
                     print("#########################################################")
                     print(f"Training model: {network.__name__}")
+                    print(f"Description: {self.description[count]}")
                     print(f"Optimizer: {optimizer_config['optimizer'].__name__}")
                     print(f"Training for {epoch_no} epochs")
                     model = network()
                     out_dict = self._train_single_configuration(model, optimizer_config, epoch_no)
+                    out_dict["description"] = self.description[count]
+                    out_dict["timestamp"] = datetime.datetime.now()
+                    out_dict["transform"] = self.train_transform
                     outputs.append(out_dict)
+            count += 1
         outputs_sorted = sorted(outputs, key=lambda x: x['test_acc'][-1], reverse=True)
         return outputs_sorted
     
@@ -95,14 +106,18 @@ class Trainer:
         optimizer = optimizer_config["optimizer"](model.parameters(), **optimizer_config["params"])
         
         out_dict = {
+            
             'model_name':       model.__class__.__name__,
+            'description':      None,
+            'timestamp':        None,
             'model':            model,
             'train_acc':        [],
             'test_acc':         [],
             'train_loss':       [],
             'test_loss':        [],
             'epochs':           num_epochs,
-            'optimizer_config': optimizer_config 
+            'optimizer_config': optimizer_config,
+            'transform':        None
             }
         
         for epoch in tqdm(range(num_epochs), unit='epoch'):
