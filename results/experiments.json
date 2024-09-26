@@ -1,882 +1,1194 @@
 [
     {
-        "model_name": "HotdogCNN",
-        "model": "HotdogCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "model_name": "BaseCNN",
+        "description": "Baseline_BaseCNN",
+        "timestamp": "2024-09-26 10:53:18.591774",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
         "train_acc": [
-            0.6565705911089399,
-            0.7435271128480704,
-            0.7489008304836345,
-            0.7498778700537372,
-            0.761113825109917,
-            0.7791890571568149,
-            0.7669760625305325,
-            0.7957987298485588,
-            0.8021494870542257,
-            0.7997068881289692,
-            0.7923790913531998,
-            0.8163165608207132,
-            0.8163165608207132,
-            0.8168050806057645,
-            0.824132877381534,
-            0.830972154372252,
-            0.8373229115779189,
-            0.8314606741573034,
-            0.8407425500732779,
-            0.8510014655593552
+            0.6311675622862726,
+            0.743038593063019,
+            0.7640449438202247,
+            0.7879824132877381,
+            0.782608695652174,
+            0.8128969223253542,
+            0.8231558378114313,
+            0.8299951148021495,
+            0.8348803126526624,
+            0.8602833414753297,
+            0.8607718612603811,
+            0.8832437713727406,
+            0.8949682462139716,
+            0.9184171958964338,
+            0.9149975574010747,
+            0.9311187103077675,
+            0.9242794333170493,
+            0.945285784074255,
+            0.925256472887152,
+            0.9413776257938447
         ],
         "test_acc": [
-            0.7191192266380236,
-            0.7309344790547798,
-            0.7502685284640171,
-            0.7416756176154672,
-            0.7518796992481203,
-            0.7502685284640171,
-            0.7389903329752954,
-            0.7771213748657357,
-            0.7631578947368421,
-            0.7551020408163265,
-            0.7690655209452202,
-            0.7900107411385607,
-            0.7830290010741139,
+            0.6949516648764769,
+            0.7126745435016112,
+            0.7330827067669173,
+            0.7330827067669173,
+            0.757250268528464,
+            0.7497314715359829,
+            0.7363050483351236,
+            0.715359828141783,
+            0.7701396348012889,
+            0.7556390977443609,
             0.7610096670247046,
-            0.7830290010741139,
-            0.7969924812030075,
-            0.7798066595059077,
-            0.7867883995703545,
-            0.7910848549946294,
-            0.7873254564983888
+            0.761546723952739,
+            0.7454350161117078,
+            0.7593984962406015,
+            0.7454350161117078,
+            0.751342642320086,
+            0.7422126745435016,
+            0.7470461868958109,
+            0.7357679914070892,
+            0.7481203007518797
         ],
         "train_loss": [
-            0.6568485591560602,
-            0.5327499350532889,
-            0.5080118086189032,
-            0.5249839071184397,
-            0.5057986797764897,
-            0.47059997264295816,
-            0.4908382464200258,
-            0.45960608310997486,
-            0.4495193297043443,
-            0.45325500797480345,
-            0.44994382467120886,
-            0.41541422717273235,
-            0.4106110353022814,
-            0.4123471397906542,
-            0.3959098719060421,
-            0.3807618636637926,
-            0.386369239538908,
-            0.38721525482833385,
-            0.3641628101468086,
-            0.3598659699782729
+            0.6371504068374634,
+            0.5257551530376077,
+            0.493264582939446,
+            0.46808653231710196,
+            0.46441977843642235,
+            0.4206670541316271,
+            0.3963014604523778,
+            0.38869170285761356,
+            0.3653114130720496,
+            0.32970470702275634,
+            0.315480119548738,
+            0.286178074311465,
+            0.26052623707801104,
+            0.22607303131371737,
+            0.2183029679581523,
+            0.19558952562510967,
+            0.19988754042424262,
+            0.1637480773497373,
+            0.1863928318489343,
+            0.15632917243056
         ],
         "test_loss": [
-            0.5723380555709203,
-            0.5448466787735621,
-            0.5209907372792562,
-            0.5358483771483104,
-            0.5184171011050542,
-            0.5204768811662992,
-            0.5197617381811142,
-            0.47747233311335247,
-            0.49130390385786693,
-            0.5053702563047409,
-            0.5046581466992696,
-            0.47091998606920243,
-            0.4803222974141439,
-            0.4904297376672427,
-            0.4732684006293615,
-            0.485439170897007,
-            0.47719052036603293,
-            0.469687257707119,
-            0.4825545241435369,
-            0.4760615269343058
+            0.5843508025010427,
+            0.5902446289857228,
+            0.5325202733278275,
+            0.5437297075986862,
+            0.5172309954961141,
+            0.522436281045278,
+            0.5604474271337191,
+            0.6512772108117739,
+            0.5199254552523295,
+            0.546902534365654,
+            0.559148146212101,
+            0.5654988795518875,
+            0.5803451210260391,
+            0.6025301933288574,
+            0.6022642572720845,
+            0.6682870010534923,
+            0.6329333881537119,
+            0.705746342241764,
+            0.7665513381361961,
+            0.686604380607605
         ],
         "epochs": 20,
         "optimizer_config": {
             "optimizer": "<class 'torch.optim.adam.Adam'>",
             "params": {
-                "lr": 0.001,
-                "weight_decay": 0.0001
+                "lr": 0.0001
             }
-        }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n)"
     },
     {
-        "model_name": "HotdogCNN",
-        "model": "HotdogCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "model_name": "BaseCNN",
+        "description": "Baseline_BaseCNN",
+        "timestamp": "2024-09-26 11:00:35.726547",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
         "train_acc": [
-            0.5989252564728872,
-            0.7410845139228138,
-            0.7449926722032242,
-            0.7469467513434294,
-            0.7713727405959941,
-            0.7625793844650708,
-            0.7860283341475329,
-            0.7953102100635075,
-            0.8041035661944309,
-            0.8080117244748413
-        ],
-        "test_acc": [
-            0.6251342642320086,
-            0.7293233082706767,
-            0.6836734693877551,
-            0.7019334049409237,
-            0.7545649838882922,
-            0.7636949516648764,
-            0.7733619763694952,
-            0.7728249194414608,
-            0.776047261009667,
-            0.784640171858217
-        ],
-        "train_loss": [
-            0.7034694794565439,
-            0.5474093304947019,
-            0.5290706679224968,
-            0.5256694322451949,
-            0.49313935451209545,
-            0.48518635984510183,
-            0.46082054637372494,
-            0.4514361722394824,
-            0.4491608515381813,
-            0.4376196386292577
-        ],
-        "test_loss": [
-            0.6428886284430821,
-            0.5431507428487142,
-            0.6037280529737472,
-            0.5895948102076848,
-            0.532144750157992,
-            0.4996572047472,
-            0.49827734182278316,
-            0.4790637900431951,
-            0.47067668835322063,
-            0.4725246086716652
-        ],
-        "epochs": 10,
-        "optimizer_config": {
-            "optimizer": "<class 'torch.optim.adam.Adam'>",
-            "params": {
-                "lr": 0.001,
-                "weight_decay": 0.0001
-            }
-        }
-    },
-    {
-        "model_name": "HotdogCNN",
-        "model": "HotdogCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
-        "train_acc": [
-            0.5886663409868099,
-            0.7239863214460186,
-            0.7518319491939424,
-            0.7655105031753786,
-            0.7782120175867122,
-            0.7699071812408402,
-            0.7840742550073277,
-            0.7923790913531998,
-            0.8080117244748413,
-            0.8299951148021495
-        ],
-        "test_acc": [
-            0.6981740064446831,
-            0.7373791621911923,
-            0.7303974221267454,
-            0.7293233082706767,
-            0.7244897959183674,
-            0.757250268528464,
-            0.7395273899033298,
-            0.7776584317937701,
-            0.771750805585392,
-            0.784640171858217
-        ],
-        "train_loss": [
-            0.6916758082807064,
-            0.5529183456674218,
-            0.517866755835712,
-            0.500949639827013,
-            0.4835729757323861,
-            0.47148321010172367,
-            0.46778447926044464,
-            0.45292932633310556,
-            0.4214274100959301,
-            0.40209431666880846
-        ],
-        "test_loss": [
-            0.6153582751750946,
-            0.5492429137229919,
-            0.553875274459521,
-            0.5324833105007808,
-            0.5485068281491597,
-            0.5197647660970688,
-            0.5478973339001337,
-            0.49425785839557645,
-            0.48313967188199364,
-            0.4943621983130773
-        ],
-        "epochs": 10,
-        "optimizer_config": {
-            "optimizer": "<class 'torch.optim.adam.Adam'>",
-            "params": {
-                "lr": 0.001,
-                "weight_decay": 0.0001
-            }
-        }
-    },
-    {
-        "model_name": "HotdogCNN",
-        "model": "HotdogCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
-        "train_acc": [
-            0.6536394723986322,
-            0.7357107962872497,
-            0.7581827063996092,
-            0.7586712261846604,
-            0.7625793844650708,
-            0.7752808988764045,
-            0.7933561309233024,
-            0.7884709330727895,
-            0.8070346849047386,
-            0.797752808988764
-        ],
-        "test_acc": [
-            0.6831364124597207,
-            0.7395273899033298,
-            0.7293233082706767,
-            0.7406015037593985,
-            0.748657357679914,
-            0.7540279269602578,
-            0.7728249194414608,
-            0.7755102040816326,
-            0.7679914070891515,
-            0.7744360902255639
-        ],
-        "train_loss": [
-            0.6921409880742431,
-            0.5458865920081735,
-            0.518337489105761,
-            0.5091246729716659,
-            0.5020583290606737,
-            0.4875355949625373,
-            0.4573745094239712,
-            0.4618252897635102,
-            0.4361213119700551,
-            0.43852420523762703
-        ],
-        "test_loss": [
-            0.5918235878149668,
-            0.5420036911964417,
-            0.5607462525367737,
-            0.5347240934769313,
-            0.5356068919102351,
-            0.5089187026023865,
-            0.47985443969567615,
-            0.4752684493859609,
-            0.5020766586065293,
-            0.47326467037200926
-        ],
-        "epochs": 10,
-        "optimizer_config": {
-            "optimizer": "<class 'torch.optim.adam.Adam'>",
-            "params": {
-                "lr": 0.001,
-                "weight_decay": 0.0001
-            }
-        }
-    },
-    {
-        "model_name": "HotdogCNN",
-        "model": "HotdogCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
-        "train_acc": [
-            0.6238397655105031,
-            0.7528089887640449,
-            0.7601367855398143,
-            0.7718612603810454,
-            0.7752808988764045,
-            0.7816316560820713,
-            0.7962872496336102,
-            0.7948216902784563,
-            0.8153395212506106,
-            0.8251099169516365
-        ],
-        "test_acc": [
-            0.7148227712137487,
-            0.7395273899033298,
-            0.742749731471536,
-            0.7534908700322234,
-            0.7395273899033298,
-            0.7545649838882922,
-            0.7653061224489796,
-            0.7685284640171858,
-            0.7481203007518797,
-            0.7674543501611171
-        ],
-        "train_loss": [
-            0.6738818194717169,
-            0.5369114549830556,
-            0.5183165268972516,
-            0.4840626372024417,
-            0.4907529642805457,
-            0.47849138267338276,
-            0.44151757284998894,
-            0.4540004972368479,
-            0.4158615404739976,
-            0.409091105684638
-        ],
-        "test_loss": [
-            0.568915914495786,
-            0.5402292390664418,
-            0.5383750389019648,
-            0.5358179628849029,
-            0.5337422410647075,
-            0.5022030601898829,
-            0.49954496026039125,
-            0.4901379868388176,
-            0.5122470994790395,
-            0.4918463284770648
-        ],
-        "epochs": 10,
-        "optimizer_config": {
-            "optimizer": "<class 'torch.optim.adam.Adam'>",
-            "params": {
-                "lr": 0.001,
-                "weight_decay": 0.0001
-            }
-        }
-    },
-    {
-        "model_name": "HotdogCNN",
-        "model": "HotdogCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.1, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): ReLU()\n    (6): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (7): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (8): Dropout2d(p=0.1, inplace=False)\n    (9): ReLU()\n    (10): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (11): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (12): ReLU()\n    (13): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
-        "train_acc": [
-            0.6355642403517342,
-            0.7415730337078652,
-            0.7503663898387885,
-            0.7669760625305325,
-            0.7743038593063019,
-            0.7791890571568149,
-            0.7669760625305325,
-            0.7752808988764045,
-            0.8011724474841231,
-            0.7635564240351734
-        ],
-        "test_acc": [
-            0.723952738990333,
-            0.7448979591836735,
-            0.7443609022556391,
-            0.7534908700322234,
-            0.751342642320086,
-            0.751342642320086,
-            0.7631578947368421,
-            0.7647690655209453,
-            0.7765843179377014,
-            0.761546723952739
-        ],
-        "train_loss": [
-            0.6915289163589478,
-            0.5391731839627028,
-            0.5144751910120249,
-            0.5007203230634332,
-            0.48367824871093035,
-            0.4765571793541312,
-            0.47553943283855915,
-            0.4725318308919668,
-            0.4535469086840749,
-            0.4936956539750099
-        ],
-        "test_loss": [
-            0.5856235603491465,
-            0.547791517774264,
-            0.5241885205109914,
-            0.5230447113513946,
-            0.5238223115603129,
-            0.5260722955067952,
-            0.48449846108754474,
-            0.5097927321990331,
-            0.4850619335969289,
-            0.5134670118490855
-        ],
-        "epochs": 10,
-        "optimizer_config": {
-            "optimizer": "<class 'torch.optim.adam.Adam'>",
-            "params": {
-                "lr": 0.001,
-                "weight_decay": 0.0001
-            }
-        }
-    },
-    {
-        "model_name": "HotdogCNN",
-        "model": "HotdogCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=512, bias=True)\n    (1): ReLU()\n    (2): Linear(in_features=512, out_features=1, bias=True)\n    (3): Sigmoid()\n  )\n)",
-        "train_acc": [
-            0.5872007816316561,
-            0.7322911577918906,
-            0.7484123106985833,
-            0.7635564240351734,
-            0.7703957010258915,
-            0.7747923790913532,
-            0.782608695652174,
-            0.7821201758671226,
-            0.7987298485588666,
-            0.8080117244748413
-        ],
-        "test_acc": [
-            0.6595059076262084,
-            0.6874328678839957,
-            0.7357679914070892,
-            0.7416756176154672,
-            0.7234156820622986,
-            0.728249194414608,
-            0.7164339419978518,
-            0.7567132116004296,
-            0.7706766917293233,
-            0.757250268528464
-        ],
-        "train_loss": [
-            0.7535448614507914,
-            0.5627834443002939,
-            0.5208435021340847,
-            0.5095344297587872,
-            0.48292819410562515,
-            0.4698124201968312,
-            0.458963630720973,
-            0.4698399780318141,
-            0.4281022697687149,
-            0.42110798554494977
-        ],
-        "test_loss": [
-            0.6243272413810094,
-            0.5921033064524333,
-            0.5343770156304042,
-            0.5254805286725363,
-            0.5448193152745565,
-            0.5324639161427815,
-            0.5486448988318443,
-            0.4935667484998703,
-            0.48602215150992073,
-            0.5161788408954938
-        ],
-        "epochs": 10,
-        "optimizer_config": {
-            "optimizer": "<class 'torch.optim.adam.Adam'>",
-            "params": {
-                "lr": 0.001,
-                "weight_decay": 0.0001
-            }
-        }
-    },
-    {
-        "model_name": "HotdogCNN",
-        "model": "HotdogCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.2, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): ReLU()\n    (6): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (7): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (8): Dropout2d(p=0.2, inplace=False)\n    (9): ReLU()\n    (10): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (11): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (12): ReLU()\n    (13): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
-        "train_acc": [
-            0.5730337078651685,
-            0.7357107962872497,
-            0.7361993160723009,
-            0.7318026380068393,
-            0.7498778700537372,
-            0.7542745481191988,
-            0.7537860283341475,
-            0.747923790913532,
-            0.7669760625305325,
-            0.7596482657547631
-        ],
-        "test_acc": [
-            0.6756176154672395,
-            0.7180451127819549,
-            0.6981740064446831,
-            0.7266380236305048,
-            0.7416756176154672,
-            0.7303974221267454,
-            0.751342642320086,
-            0.7443609022556391,
-            0.7556390977443609,
-            0.7561761546723953
-        ],
-        "train_loss": [
-            0.7053969390690327,
-            0.5539054293185472,
-            0.5432678405195475,
-            0.5518266083672643,
-            0.5230886237695813,
-            0.5234362287446856,
-            0.5199129739776254,
-            0.502871934324503,
-            0.4918850548565388,
-            0.4913669489324093
-        ],
-        "test_loss": [
-            0.6122875432173411,
-            0.5569852113723754,
-            0.5912339200576147,
-            0.5510519872109095,
-            0.5396401643753052,
-            0.5588128954172135,
-            0.5257772415876388,
-            0.523897663752238,
-            0.5380110323429108,
-            0.49948880771795906
-        ],
-        "epochs": 10,
-        "optimizer_config": {
-            "optimizer": "<class 'torch.optim.adam.Adam'>",
-            "params": {
-                "lr": 0.001,
-                "weight_decay": 0.0001
-            }
-        }
-    },
-    {
-        "model_name": "HotdogCNN",
-        "model": "HotdogCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
-        "train_acc": [
-            0.6233512457254519,
-            0.7386419149975574,
-            0.7591597459697118,
-            0.7855398143624817,
-            0.7782120175867122,
-            0.7967757694186615,
-            0.810942843185149,
-            0.8397655105031754,
-            0.8544211040547142,
-            0.8700537371763556
-        ],
-        "test_acc": [
-            0.7142857142857143,
-            0.7244897959183674,
-            0.7357679914070892,
-            0.7432867883995704,
-            0.7422126745435016,
-            0.7518796992481203,
-            0.7497314715359829,
-            0.7540279269602578,
-            0.7722878625134264,
-            0.7551020408163265
-        ],
-        "train_loss": [
-            0.6839284505695105,
-            0.5556077966466546,
-            0.5133282486349344,
-            0.48191469069570303,
-            0.4985818350687623,
-            0.45150625612586737,
-            0.4315472971647978,
-            0.37918935995548964,
-            0.33952240739017725,
-            0.29365532100200653
-        ],
-        "test_loss": [
-            0.5637517283360164,
-            0.5442086686690648,
-            0.5717566991845767,
-            0.5207721531391144,
-            0.5338321099678676,
-            0.5348965376615524,
-            0.5350898772478103,
-            0.5278861549993356,
-            0.5365424086650212,
-            0.5985947554310163
-        ],
-        "epochs": 10,
-        "optimizer_config": {
-            "optimizer": "<class 'torch.optim.adam.Adam'>",
-            "params": {
-                "lr": 0.001,
-                "weight_decay": 0.0001
-            }
-        }
-    },
-    {
-        "model_name": "HotdogCNN",
-        "model": "HotdogCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
-        "train_acc": [
-            0.6106497313141183,
-            0.7415730337078652,
-            0.756228627259404,
-            0.7567171470444553,
-            0.761113825109917,
-            0.7767464582315584,
-            0.782608695652174,
-            0.7874938935026868,
-            0.8128969223253542,
-            0.8295065950170982
-        ],
-        "test_acc": [
-            0.7223415682062299,
-            0.7314715359828142,
-            0.7261009667024705,
-            0.7491944146079484,
-            0.7443609022556391,
-            0.7228786251342643,
-            0.7459720730397422,
-            0.7459720730397422,
-            0.7577873254564984,
-            0.7540279269602578
-        ],
-        "train_loss": [
-            0.689449017867446,
-            0.5424257926642895,
-            0.519530282355845,
-            0.5165606131777167,
-            0.4952287198975682,
-            0.4820190630853176,
-            0.47572977282106876,
-            0.4593655252829194,
-            0.4233297733590007,
-            0.394066508859396
-        ],
-        "test_loss": [
-            0.5608532498280208,
-            0.54828033943971,
-            0.5811407188574473,
-            0.53087138235569,
-            0.5325828274091085,
-            0.5574086407820383,
-            0.526877802113692,
-            0.5232637758056323,
-            0.5117042556405067,
-            0.5371668686469396
-        ],
-        "epochs": 10,
-        "optimizer_config": {
-            "optimizer": "<class 'torch.optim.adam.Adam'>",
-            "params": {
-                "lr": 0.001,
-                "weight_decay": 0.0001
-            }
-        }
-    },
-    {
-        "model_name": "HotdogCNN",
-        "model": "HotdogCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.1, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.1, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.1, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.1, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
-        "train_acc": [
-            0.6326331216414265,
-            0.7401074743527113,
+            0.558866634098681,
+            0.6389838788470933,
+            0.6746458231558378,
+            0.7005373717635565,
+            0.706399609184172,
+            0.7254518808011724,
+            0.7337567171470445,
+            0.7552515876893015,
+            0.7523204689789936,
             0.7596482657547631,
-            0.7708842208109429,
+            0.7684416218856863,
+            0.7659990229604299,
             0.7738153395212506,
-            0.7845627747923791,
             0.782608695652174,
-            0.7962872496336102,
-            0.8212017586712261,
-            0.8265754763067904
-        ],
-        "test_acc": [
-            0.7158968850698174,
-            0.7185821697099892,
-            0.7352309344790547,
-            0.7411385606874329,
-            0.7368421052631579,
-            0.734156820622986,
-            0.7406015037593985,
-            0.7551020408163265,
-            0.7556390977443609,
-            0.7529538131041891
-        ],
-        "train_loss": [
-            0.6880671121180058,
-            0.5553161650896072,
-            0.521808696910739,
-            0.5135589325800538,
-            0.48729287274181843,
-            0.4700307585299015,
-            0.46296372171491385,
-            0.43865750450640917,
-            0.40511725656688213,
-            0.41114232409745455
-        ],
-        "test_loss": [
-            0.5728949348131815,
-            0.5497103691101074,
-            0.5431246727705001,
-            0.5549427082141241,
-            0.5321923017501831,
-            0.5323578824599584,
-            0.554877478380998,
-            0.5151492898662885,
-            0.5512970651189486,
-            0.5016582687695821
-        ],
-        "epochs": 10,
-        "optimizer_config": {
-            "optimizer": "<class 'torch.optim.adam.Adam'>",
-            "params": {
-                "lr": 0.001,
-                "weight_decay": 0.0001
-            }
-        }
-    },
-    {
-        "model_name": "HotdogCNN",
-        "model": "HotdogCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
-        "train_acc": [
-            0.6042989741084513,
-            0.7342452369320958,
-            0.7640449438202247,
-            0.7616023448949683,
-            0.7918905715681485,
+            0.7757694186614558,
+            0.7850512945774304,
+            0.7840742550073277,
+            0.7806546165119688,
             0.7879824132877381,
-            0.8006839276990718,
-            0.8119198827552516,
-            0.815828041035662,
-            0.8094772838299951
+            0.794333170493405
         ],
         "test_acc": [
-            0.7271750805585392,
-            0.7379162191192267,
-            0.7524167561761547,
-            0.7642320085929108,
-            0.7556390977443609,
-            0.7712137486573577,
-            0.7567132116004296,
-            0.7701396348012889,
-            0.7712137486573577,
-            0.7502685284640171
-        ],
-        "train_loss": [
-            0.675478171557188,
-            0.5425347415730357,
-            0.5085266409441829,
-            0.4893917180597782,
-            0.4621580829843879,
-            0.4554880512878299,
-            0.446001292206347,
-            0.431723291054368,
-            0.4045804291963577,
-            0.4332809466868639
-        ],
-        "test_loss": [
-            0.5559188465277354,
-            0.5811388870080312,
-            0.527359880010287,
-            0.5188290784756343,
-            0.5295443986852963,
-            0.4768525302410126,
-            0.5262670521934827,
-            0.4851312875747681,
-            0.4795740383366744,
-            0.5206107884645462
-        ],
-        "epochs": 10,
-        "optimizer_config": {
-            "optimizer": "<class 'torch.optim.adam.Adam'>",
-            "params": {
-                "lr": 0.001,
-                "weight_decay": 0.0001
-            }
-        }
-    },
-    {
-        "model_name": "HotdogCNN",
-        "model": "HotdogCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
-        "train_acc": [
-            0.6555935515388374,
-            0.73961895456766,
-            0.7528089887640449,
-            0.7699071812408402,
-            0.789447972642892,
-            0.7948216902784563,
-            0.8085002442598925,
-            0.8373229115779189,
-            0.8612603810454323,
-            0.8900830483634588
-        ],
-        "test_acc": [
+            0.5773361976369495,
+            0.6450053705692803,
+            0.6535982814178303,
+            0.6815252416756176,
             0.706766917293233,
-            0.7261009667024705,
-            0.723952738990333,
-            0.7422126745435016,
-            0.7309344790547798,
-            0.7411385606874329,
-            0.7438238453276047,
-            0.7475832438238453,
-            0.7647690655209453,
-            0.7481203007518797
+            0.7255639097744361,
+            0.7352309344790547,
+            0.7373791621911923,
+            0.7416756176154672,
+            0.7406015037593985,
+            0.7368421052631579,
+            0.7330827067669173,
+            0.742749731471536,
+            0.7465091299677766,
+            0.7502685284640171,
+            0.7508055853920516,
+            0.7287862513426423,
+            0.7352309344790547,
+            0.7551020408163265,
+            0.7443609022556391
         ],
         "train_loss": [
-            0.6227111928164959,
-            0.525367571040988,
-            0.5198392570018768,
-            0.48454470094293356,
-            0.4826456904411316,
-            0.4507750831544399,
-            0.41144706681370735,
-            0.3803578345105052,
-            0.31735806073993444,
-            0.27151504810899496
+            0.6919810771942139,
+            0.683006701990962,
+            0.6658340413123369,
+            0.6287366505712271,
+            0.5847244318574667,
+            0.5544441537931561,
+            0.5338920801877975,
+            0.519819812849164,
+            0.5067286500707269,
+            0.49908802565187216,
+            0.49221652280539274,
+            0.48652633279561996,
+            0.4832525998353958,
+            0.4782560095191002,
+            0.4746725847944617,
+            0.47014596685767174,
+            0.47007175255566835,
+            0.4679081467911601,
+            0.46059306897222996,
+            0.454631713218987
         ],
         "test_loss": [
-            0.5706317067146301,
-            0.5890900204579036,
-            0.5384413590033849,
-            0.5964163646101952,
-            0.5314775983492533,
-            0.5979896282156308,
-            0.537690578897794,
-            0.527637587984403,
-            0.5564199239015579,
-            0.5928566470742226
+            0.6897104442119598,
+            0.6790757298469543,
+            0.6583696643511454,
+            0.6159140328566234,
+            0.584700858592987,
+            0.5697934140761693,
+            0.5533163080612818,
+            0.5440468599398931,
+            0.5394930889209112,
+            0.5417893598477046,
+            0.5415757060050964,
+            0.5447411189476649,
+            0.5311202923456828,
+            0.5285068601369858,
+            0.5280277669429779,
+            0.5259114762147268,
+            0.5532946030298869,
+            0.537464028596878,
+            0.5182638605435689,
+            0.5284231255451838
         ],
-        "epochs": 10,
+        "epochs": 20,
         "optimizer_config": {
             "optimizer": "<class 'torch.optim.adam.Adam'>",
             "params": {
-                "lr": 0.001,
-                "weight_decay": 0.0001
+                "lr": 1e-05
             }
-        }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n)"
     },
     {
-        "model_name": "HotdogCNN",
-        "model": "HotdogCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "model_name": "BaseCNN",
+        "description": "Baseline: BaseCNN",
+        "timestamp": "2024-09-26 10:29:17.844502",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
         "train_acc": [
-            0.6140693698094772,
-            0.7283829995114802,
-            0.7449926722032242,
-            0.7547630679042501,
-            0.7542745481191988,
-            0.7674645823155838,
-            0.7620908646800195,
-            0.7791890571568149,
-            0.789447972642892,
-            0.7855398143624817
+            0.6595017098192477
         ],
         "test_acc": [
-            0.6514500537056928,
-            0.7330827067669173,
-            0.7266380236305048,
-            0.7379162191192267,
-            0.7346938775510204,
-            0.7330827067669173,
-            0.7524167561761547,
-            0.7685284640171858,
-            0.7330827067669173,
-            0.7330827067669173
+            0.7368421052631579
         ],
         "train_loss": [
-            0.6968999337404966,
-            0.5491102151572704,
-            0.5231685535982251,
-            0.520519238896668,
-            0.5036177365109324,
-            0.49763620644807816,
-            0.4989123558625579,
-            0.47559185046702623,
-            0.46241054870188236,
-            0.47227498795837164
+            0.6523808958008885
         ],
         "test_loss": [
-            0.6201361825068792,
-            0.5421214660008749,
-            0.56490664879481,
-            0.5321577519178391,
-            0.5265528897444407,
-            0.5352419128020605,
-            0.5307529906431834,
-            0.48464048902193707,
-            0.512640138467153,
-            0.5308308730522792
+            0.5431669880946477
         ],
-        "epochs": 10,
+        "epochs": 1,
         "optimizer_config": {
             "optimizer": "<class 'torch.optim.adam.Adam'>",
             "params": {
                 "lr": 0.001,
                 "weight_decay": 0.0001
             }
-        }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n)"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "Baseline: BaseCNN",
+        "timestamp": "2024-09-26 10:41:05.978729",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.668295065950171,
+            0.7708842208109429,
+            0.767953102100635,
+            0.7806546165119688,
+            0.7972642892037127,
+            0.8119198827552516,
+            0.835857352222765,
+            0.8470933072789448,
+            0.8676111382510991,
+            0.9027845627747924,
+            0.9081582804103566,
+            0.9350268685881779,
+            0.9570102589154861,
+            0.9697117733268197,
+            0.9521250610649731,
+            0.9789936492427943,
+            0.9912066438690766,
+            0.9980459208597948,
+            0.9990229604298974,
+            0.9985344406448461
+        ],
+        "test_acc": [
+            0.7357679914070892,
+            0.7443609022556391,
+            0.7395273899033298,
+            0.719656283566058,
+            0.7545649838882922,
+            0.771750805585392,
+            0.761546723952739,
+            0.7577873254564984,
+            0.7620837808807733,
+            0.7540279269602578,
+            0.7400644468313641,
+            0.7620837808807733,
+            0.7448979591836735,
+            0.7352309344790547,
+            0.7346938775510204,
+            0.7121374865735768,
+            0.7363050483351236,
+            0.742749731471536,
+            0.7406015037593985,
+            0.734156820622986
+        ],
+        "train_loss": [
+            0.6285863965749741,
+            0.5019233282655478,
+            0.48065741639584303,
+            0.47644939832389355,
+            0.4425694067031145,
+            0.4157554470002651,
+            0.38626024778932333,
+            0.3447776264511049,
+            0.29314167331904173,
+            0.24642905639484525,
+            0.24516380717977881,
+            0.17703974642790854,
+            0.11775808141101152,
+            0.09323153016157448,
+            0.12342115433420986,
+            0.061526799865532666,
+            0.028249522525584325,
+            0.011972991727816407,
+            0.008093987855318119,
+            0.005054079183537397
+        ],
+        "test_loss": [
+            0.5457185328006744,
+            0.5490644325812658,
+            0.5277692923943201,
+            0.5998962253332139,
+            0.5288185427586237,
+            0.5102831761042277,
+            0.5376126646995545,
+            0.5671887045105298,
+            0.6136883387962977,
+            0.6163937111695608,
+            0.6319839586814244,
+            0.936015522480011,
+            0.9662314822276433,
+            1.2090577324231466,
+            1.265764456987381,
+            1.378798700372378,
+            2.0537025074164075,
+            2.4119240760803224,
+            2.7929965794086455,
+            2.7226371745268505
+        ],
+        "epochs": 20,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n)"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "DataAugmentationExp_Rotation_BaseCNN",
+        "timestamp": "2024-09-26 12:16:05.399799",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6340986809965804
+        ],
+        "test_acc": [
+            0.7309344790547798
+        ],
+        "train_loss": [
+            0.6289477162063122
+        ],
+        "test_loss": [
+            0.553363033135732
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomRotation(degrees=[-30.0, 30.0], interpolation=nearest, expand=False, fill=0)\n)"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "DataAugmentationExp_HorizontalFlip_BaseCNN",
+        "timestamp": "2024-09-26 12:11:01.471281",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6482657547630679
+        ],
+        "test_acc": [
+            0.7244897959183674
+        ],
+        "train_loss": [
+            0.6254107747226954
+        ],
+        "test_loss": [
+            0.5635334551334381
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomHorizontalFlip(p=0.5)\n)"
+    },
+    {
+        "model_name": "DropoutCNN",
+        "description": "DataAugmentationExp_VerticalFlip_DropoutCNN",
+        "timestamp": "2024-09-26 12:11:53.131397",
+        "model": "DropoutCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6380068392769908
+        ],
+        "test_acc": [
+            0.719656283566058
+        ],
+        "train_loss": [
+            0.6379365175962448
+        ],
+        "test_loss": [
+            0.5682445218165716
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomVerticalFlip(p=0.5)\n)"
+    },
+    {
+        "model_name": "DropoutCNN",
+        "description": "DataAugmentationExp_HorizontalFlip_DropoutCNN",
+        "timestamp": "2024-09-26 12:15:13.096146",
+        "model": "DropoutCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6765999022960429
+        ],
+        "test_acc": [
+            0.719656283566058
+        ],
+        "train_loss": [
+            0.6179544609040022
+        ],
+        "test_loss": [
+            0.5708568235238393
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomHorizontalFlip(p=0.5)\n)"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "DataAugmentationExp_Rotation_BaseCNN",
+        "timestamp": "2024-09-26 12:09:19.269608",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6389838788470933
+        ],
+        "test_acc": [
+            0.7158968850698174
+        ],
+        "train_loss": [
+            0.6334298122674227
+        ],
+        "test_loss": [
+            0.5770277510086695
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomRotation(degrees=[-30.0, 30.0], interpolation=nearest, expand=False, fill=0)\n)"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "DataAugmentationExp_GaussianBlur_BaseCNN",
+        "timestamp": "2024-09-26 12:17:58.577332",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6619443087445042
+        ],
+        "test_acc": [
+            0.7148227712137487
+        ],
+        "train_loss": [
+            0.6231673192232847
+        ],
+        "test_loss": [
+            0.5782933354377746
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    GaussianBlur(kernel_size=(9, 9), sigma=(0.1, 2.0))\n)"
+    },
+    {
+        "model_name": "DropoutCNN",
+        "description": "DataAugmentationExp_HorizontalFlip_DropoutCNN",
+        "timestamp": "2024-09-26 12:05:58.658433",
+        "model": "DropoutCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6507083536883244
+        ],
+        "test_acc": [
+            0.7137486573576799
+        ],
+        "train_loss": [
+            0.6464963546022773
+        ],
+        "test_loss": [
+            0.5993007858594258
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomHorizontalFlip(p=0.5)\n)"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "DataAugmentationExp_Rotation_BaseCNN",
+        "timestamp": "2024-09-26 12:12:09.894713",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.63019052271617
+        ],
+        "test_acc": [
+            0.7132116004296455
+        ],
+        "train_loss": [
+            0.6411681333556771
+        ],
+        "test_loss": [
+            0.5790475100278855
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomRotation(degrees=[-30.0, 30.0], interpolation=nearest, expand=False, fill=0)\n)"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "DataAugmentationExp_VerticalFlip_BaseCNN",
+        "timestamp": "2024-09-26 12:15:30.275216",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.651685393258427
+        ],
+        "test_acc": [
+            0.7121374865735768
+        ],
+        "train_loss": [
+            0.6362082725390792
+        ],
+        "test_loss": [
+            0.5784870247046153
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomVerticalFlip(p=0.5)\n)"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "DataAugmentationExp_HorizontalFlip_BaseCNN",
+        "timestamp": "2024-09-26 12:14:55.074035",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.618466047874939
+        ],
+        "test_acc": [
+            0.709452201933405
+        ],
+        "train_loss": [
+            0.647916816174984
+        ],
+        "test_loss": [
+            0.5874062597751617
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomHorizontalFlip(p=0.5)\n)"
+    },
+    {
+        "model_name": "DropoutCNN",
+        "description": "DataAugmentationExp_VerticalFlip_DropoutCNN",
+        "timestamp": "2024-09-26 12:15:48.333329",
+        "model": "DropoutCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6126038104543234
+        ],
+        "test_acc": [
+            0.7078410311493019
+        ],
+        "train_loss": [
+            0.6494289673864841
+        ],
+        "test_loss": [
+            0.5834525714317957
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomVerticalFlip(p=0.5)\n)"
+    },
+    {
+        "model_name": "DropoutCNN",
+        "description": "DataAugmentationExp_VerticalFlip_DropoutCNN",
+        "timestamp": "2024-09-26 12:09:02.495060",
+        "model": "DropoutCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6321446018563752
+        ],
+        "test_acc": [
+            0.7062298603651987
+        ],
+        "train_loss": [
+            0.6589573938399553
+        ],
+        "test_loss": [
+            0.5938035756349563
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomVerticalFlip(p=0.5)\n)"
+    },
+    {
+        "model_name": "DropoutCNN",
+        "description": "DataAugmentationExp_Rotation_DropoutCNN",
+        "timestamp": "2024-09-26 12:09:37.225623",
+        "model": "DropoutCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6091841719589643
+        ],
+        "test_acc": [
+            0.7056928034371643
+        ],
+        "train_loss": [
+            0.6521413698792458
+        ],
+        "test_loss": [
+            0.586578921477
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomRotation(degrees=[-30.0, 30.0], interpolation=nearest, expand=False, fill=0)\n)"
+    },
+    {
+        "model_name": "DropoutCNN",
+        "description": "DataAugmentationExp_RandomErasing_DropoutCNN",
+        "timestamp": "2024-09-26 12:18:52.838046",
+        "model": "DropoutCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6487542745481192
+        ],
+        "test_acc": [
+            0.7056928034371643
+        ],
+        "train_loss": [
+            0.6316742580384016
+        ],
+        "test_loss": [
+            0.6005407760540644
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomErasing(p=0.5, scale=(0.02, 0.33), ratio=(0.3, 3.3), value=0, inplace=False)\n)"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "DataAugmentationExp_VerticalFlip_BaseCNN",
+        "timestamp": "2024-09-26 12:08:44.482035",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6321446018563752
+        ],
+        "test_acc": [
+            0.7046186895810956
+        ],
+        "train_loss": [
+            0.6366518270224333
+        ],
+        "test_loss": [
+            0.5940567920605342
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomVerticalFlip(p=0.5)\n)"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "DataAugmentationExp_VerticalFlip_BaseCNN",
+        "timestamp": "2024-09-26 12:11:35.396735",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6257938446507083
+        ],
+        "test_acc": [
+            0.7019334049409237
+        ],
+        "train_loss": [
+            0.6408641785383224
+        ],
+        "test_loss": [
+            0.5825865983963012
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomVerticalFlip(p=0.5)\n)"
+    },
+    {
+        "model_name": "DropoutCNN",
+        "description": "DataAugmentationExp_HorizontalFlip_DropoutCNN",
+        "timestamp": "2024-09-26 12:08:27.462350",
+        "model": "DropoutCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6091841719589643
+        ],
+        "test_acc": [
+            0.6992481203007519
+        ],
+        "train_loss": [
+            0.6494657937437296
+        ],
+        "test_loss": [
+            0.6000402003526688
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomHorizontalFlip(p=0.5)\n)"
+    },
+    {
+        "model_name": "DropoutCNN",
+        "description": "DataAugmentationExp_Perspective_DropoutCNN",
+        "timestamp": "2024-09-26 12:16:59.092702",
+        "model": "DropoutCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6106497313141183
+        ],
+        "test_acc": [
+            0.6992481203007519
+        ],
+        "train_loss": [
+            0.6536390464752913
+        ],
+        "test_loss": [
+            0.5903022646903991
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomPerspective(p=0.5)\n)"
+    },
+    {
+        "model_name": "DropoutCNN",
+        "description": "DataAugmentationExp_GaussianBlur_DropoutCNN",
+        "timestamp": "2024-09-26 12:18:17.328966",
+        "model": "DropoutCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6546165119687347
+        ],
+        "test_acc": [
+            0.6981740064446831
+        ],
+        "train_loss": [
+            0.6329390350729227
+        ],
+        "test_loss": [
+            0.5727082928021748
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    GaussianBlur(kernel_size=(9, 9), sigma=(0.1, 2.0))\n)"
+    },
+    {
+        "model_name": "DropoutCNN",
+        "description": "DataAugmentationExp_Perspective_DropoutCNN",
+        "timestamp": "2024-09-26 12:13:02.406322",
+        "model": "DropoutCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6121152906692721
+        ],
+        "test_acc": [
+            0.6944146079484426
+        ],
+        "train_loss": [
+            0.6654003169387579
+        ],
+        "test_loss": [
+            0.613857826590538
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomPerspective(p=0.5)\n)"
+    },
+    {
+        "model_name": "DropoutCNN",
+        "description": "DataAugmentationExp_Rotation_DropoutCNN",
+        "timestamp": "2024-09-26 12:12:27.921065",
+        "model": "DropoutCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6433805569125549
+        ],
+        "test_acc": [
+            0.6917293233082706
+        ],
+        "train_loss": [
+            0.6276288218796253
+        ],
+        "test_loss": [
+            0.6140206108490626
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomRotation(degrees=[-30.0, 30.0], interpolation=nearest, expand=False, fill=0)\n)"
+    },
+    {
+        "model_name": "DropoutCNN",
+        "description": "DataAugmentationExp_Rotation_DropoutCNN",
+        "timestamp": "2024-09-26 12:16:23.718577",
+        "model": "DropoutCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.5959941377625794
+        ],
+        "test_acc": [
+            0.6917293233082706
+        ],
+        "train_loss": [
+            0.653790544718504
+        ],
+        "test_loss": [
+            0.5953132768472036
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomRotation(degrees=[-30.0, 30.0], interpolation=nearest, expand=False, fill=0)\n)"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "Baseline: BaseCNN",
+        "timestamp": "2024-09-26 10:26:09.334118",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6013678553981436
+        ],
+        "test_acc": [
+            0.6890440386680988
+        ],
+        "train_loss": [
+            0.6621518265455961
+        ],
+        "test_loss": [
+            0.578543746471405
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.001,
+                "weight_decay": 0.0001
+            }
+        },
+        "transform": "None"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "DataAugmentationExp_HorizontalFlip_BaseCNN",
+        "timestamp": "2024-09-26 12:05:41.210240",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6345872007816317
+        ],
+        "test_acc": [
+            0.6879699248120301
+        ],
+        "train_loss": [
+            0.6334009692072868
+        ],
+        "test_loss": [
+            0.6287866622209549
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomHorizontalFlip(p=0.5)\n)"
+    },
+    {
+        "model_name": "DropoutCNN",
+        "description": "DataAugmentationExp_HorizontalFlip_DropoutCNN",
+        "timestamp": "2024-09-26 12:11:18.993220",
+        "model": "DropoutCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6394723986321446
+        ],
+        "test_acc": [
+            0.6847475832438239
+        ],
+        "train_loss": [
+            0.6432779375463724
+        ],
+        "test_loss": [
+            0.6355276018381119
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomHorizontalFlip(p=0.5)\n)"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "DataAugmentationExp_RandomErasing_BaseCNN",
+        "timestamp": "2024-09-26 12:18:34.515182",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.5749877870053737
+        ],
+        "test_acc": [
+            0.6825993555316864
+        ],
+        "train_loss": [
+            0.6682250872254372
+        ],
+        "test_loss": [
+            0.5987413277228674
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomErasing(p=0.5, scale=(0.02, 0.33), ratio=(0.3, 3.3), value=0, inplace=False)\n)"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "DataAugmentationExp_Perspective_BaseCNN",
+        "timestamp": "2024-09-26 12:16:40.499241",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6394723986321446
+        ],
+        "test_acc": [
+            0.6552094522019334
+        ],
+        "train_loss": [
+            0.646964780986309
+        ],
+        "test_loss": [
+            0.671813381711642
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomPerspective(p=0.5)\n)"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "DataAugmentationExp_Perspective_BaseCNN",
+        "timestamp": "2024-09-26 12:12:44.600961",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.5955056179775281
+        ],
+        "test_acc": [
+            0.6460794844253491
+        ],
+        "train_loss": [
+            0.6572910007089376
+        ],
+        "test_loss": [
+            0.6626640518506368
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomPerspective(p=0.5)\n)"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "DataAugmentationExp_HorizontalFlip_BaseCNN",
+        "timestamp": "2024-09-26 12:08:10.067018",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.6399609184171959
+        ],
+        "test_acc": [
+            0.644468313641246
+        ],
+        "train_loss": [
+            0.6433133352547884
+        ],
+        "test_loss": [
+            0.6280625273784002
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n    RandomHorizontalFlip(p=0.5)\n)"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "DataAugmentationExp_ColorJitter_BaseCNN",
+        "timestamp": "2024-09-26 12:13:21.970115",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.5759648265754763
+        ],
+        "test_acc": [
+            0.6122448979591837
+        ],
+        "train_loss": [
+            0.6823955588042736
+        ],
+        "test_loss": [
+            0.6690504809220632
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    ColorJitter(brightness=(0.5, 1.5), contrast=(0.5, 1.5), saturation=(0.5, 1.5), hue=(-0.5, 0.5))\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n)"
+    },
+    {
+        "model_name": "DropoutCNN",
+        "description": "DataAugmentationExp_ColorJitter_DropoutCNN",
+        "timestamp": "2024-09-26 12:17:40.564233",
+        "model": "DropoutCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.5407914020517831
+        ],
+        "test_acc": [
+            0.5784103114930182
+        ],
+        "train_loss": [
+            0.6842605974525213
+        ],
+        "test_loss": [
+            0.6814177970091502
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    ColorJitter(brightness=(0.5, 1.5), contrast=(0.5, 1.5), saturation=(0.5, 1.5), hue=(-0.5, 0.5))\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n)"
+    },
+    {
+        "model_name": "BaseCNN",
+        "description": "DataAugmentationExp_ColorJitter_BaseCNN",
+        "timestamp": "2024-09-26 12:17:19.712177",
+        "model": "BaseCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): ReLU()\n    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (3): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (4): ReLU()\n    (5): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (6): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (7): ReLU()\n    (8): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (9): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.5192965315095261
+        ],
+        "test_acc": [
+            0.5520945220193341
+        ],
+        "train_loss": [
+            0.6901165768504143
+        ],
+        "test_loss": [
+            0.6770113964875539
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    ColorJitter(brightness=(0.5, 1.5), contrast=(0.5, 1.5), saturation=(0.5, 1.5), hue=(-0.5, 0.5))\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n)"
+    },
+    {
+        "model_name": "DropoutCNN",
+        "description": "DataAugmentationExp_ColorJitter_DropoutCNN",
+        "timestamp": "2024-09-26 12:13:41.686319",
+        "model": "DropoutCNN(\n  (convolutional): Sequential(\n    (0): Conv2d(3, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (1): Dropout2d(p=0.05, inplace=False)\n    (2): ReLU()\n    (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (4): Conv2d(32, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))\n    (5): Dropout2d(p=0.05, inplace=False)\n    (6): ReLU()\n    (7): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (8): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (9): Dropout2d(p=0.05, inplace=False)\n    (10): ReLU()\n    (11): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n    (12): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))\n    (13): Dropout2d(p=0.05, inplace=False)\n    (14): ReLU()\n    (15): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)\n  )\n  (fully_connected): Sequential(\n    (0): Linear(in_features=65536, out_features=1, bias=True)\n    (1): Sigmoid()\n  )\n)",
+        "train_acc": [
+            0.5046409379579873
+        ],
+        "test_acc": [
+            0.4865735767991407
+        ],
+        "train_loss": [
+            0.6968747172504663
+        ],
+        "test_loss": [
+            0.6928935567537944
+        ],
+        "epochs": 1,
+        "optimizer_config": {
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "params": {
+                "lr": 0.0001
+            }
+        },
+        "transform": "Compose(\n    Resize(size=(256, 256), interpolation=bilinear, max_size=None, antialias=True)\n    ToTensor()\n    ColorJitter(brightness=(0.5, 1.5), contrast=(0.5, 1.5), saturation=(0.5, 1.5), hue=(-0.5, 0.5))\n    Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))\n)"
     }
 ]
