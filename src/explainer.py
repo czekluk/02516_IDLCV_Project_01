@@ -8,6 +8,7 @@ from data.make_dataset import HotdogNotHotDog_DataModule
 from data.custom_transforms import base_transform
 from torchvision.models import VGG19_Weights
 from models.basic_models import BaseCNN
+from models.final_model import FinalCNN3
 import cv2
 import os
 
@@ -156,7 +157,7 @@ class SaliencyExplainer:
             image = cv2.resize(image,(saliency_map.shape[0],saliency_map.shape[1]))
             image = image * 255
             image = image.astype(np.uint8)
-            heatmap = cv2.addWeighted(saliency_heatmap,0.3,image,0.7,0)
+            heatmap = cv2.addWeighted(saliency_heatmap,0.5,image,0.5,0)
 
             # create plot
             fig, ax = plt.subplots()
@@ -177,18 +178,25 @@ if __name__ == "__main__":
     # model_path = os.path.join(PROJECT_BASE_DIR, "results/saved_models/Baseline_BaseCNN-2024-9-26_11-0-35-0.7444-BaseCNN.pth")
     # model.load_state_dict(torch.load(model_path, weights_only=True))
 
+    model = FinalCNN3()
+    model_path = os.path.join(PROJECT_BASE_DIR, "results/saved_models/3rd_FinalCNN-2024-9-27_20-0-26-0.8303-FinalCNN3.pth")
+    model.load_state_dict(torch.load(model_path, weights_only=True))
+
     test_transform = base_transform(normalize=False, size=256)
     dm = HotdogNotHotDog_DataModule(test_transform=test_transform, batch_size=10)
     testloader = dm.test_dataloader()
 
     img, _ = next(iter(testloader))
-    img = img[1,:,:,:]
+    img = img[4,:,:,:]
     img = torch.unsqueeze(img, 0)
-
+    print(model(img))
     explainer = SaliencyExplainer(model)
+    sal_map = explainer.explain_smoothgrad(img,normalize=True, n_avg=25, std=0.1)
+    # sal_map = explainer.explain(img,normalize=True)
 
-    # sal_map = explainer.explain_smoothgrad(img,normalize=True, n_avg=20, std=0.1)
-    sal_map = explainer.explain(img,normalize=True)
+    # Normalize saliency map to the interval [0, 1]
+    sal_map = (sal_map - sal_map.min()) / (sal_map.max() - sal_map.min())
 
-    explainer.show_image(sal_map, overlay=True, image=img, save=True, hist_eq=True)
     explainer.show_image(sal_map, image=img)
+    explainer.show_image(sal_map, overlay=True, image=img, hist_eq=True)
+    

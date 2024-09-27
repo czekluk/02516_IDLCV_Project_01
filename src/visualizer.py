@@ -8,6 +8,7 @@ import torch
 from sklearn import metrics
 from data.make_dataset import HotdogNotHotDog_DataModule, base_transform
 from models.basic_models import BaseCNN
+from models.final_model import FinalCNN3
 from tqdm import tqdm
 
 PROJECT_BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -53,10 +54,11 @@ class Visualizer():
         
         plt.figure(figsize=figsize)
         for i, entry in enumerate(data):
-            plt.plot(entry["train_acc"], label=f"{entry['model_name']} train acc", linestyle="--", color=colors(i))
-            plt.plot(entry["test_acc"], label=f"{entry['model_name']} test acc", color=colors(i))
+            plt.plot(entry["train_acc"], label=f"{entry['model_name']} train acc", linestyle="--", color=colors(i), linewidth=3)
+            plt.plot(entry["test_acc"], label=f"{entry['model_name']} test acc", color=colors(i), linewidth=3)
         plt.xlabel("Epoch")
-        plt.xticks(range(max([len(entry["train_acc"]) for entry in data])))
+        max_epoch = max([len(entry["train_acc"]) for entry in data])
+        plt.xticks(range(0, max_epoch, 5))
         plt.ylabel("Accuracy")
         plt.legend()
         if save_path:
@@ -81,6 +83,7 @@ class Visualizer():
             fmt='g',
             xticklabels=x_labels,
             yticklabels=y_labels,
+            annot_kws={"size": 18}  # Increase font size
         )
         plt.ylabel("True Label")
         plt.xlabel("Predicted Label")
@@ -169,13 +172,16 @@ class Visualizer():
 if __name__ == "__main__":
     # Init class
     visualizer = Visualizer()
-    json_path = os.path.join(PROJECT_BASE_DIR, "results/shared_models/experiments.json")
+    json_path = os.path.join(PROJECT_BASE_DIR, "results/experiments_to_plot.json")
     save_path = os.path.join(PROJECT_BASE_DIR, "results/figures/")
 
+    # visualizer.plot_training_json(json_path=json_path, save_path=save_path, cmap='rainbow')
+
     # Load model
-    model = BaseCNN()
-    model_path = os.path.join(PROJECT_BASE_DIR, "results/shared_models/0.7873-HotdogCNN.pth")
+    model = FinalCNN3()
+    model_path = os.path.join(PROJECT_BASE_DIR, "results/saved_models/3rd_FinalCNN-2024-9-27_20-0-26-0.8303-FinalCNN3.pth")
     model.load_state_dict(torch.load(model_path, weights_only=True, map_location=device))
+    model.to(device)
     
     # Load datamodule
     test_transform = base_transform(normalize=True,size=256)
@@ -186,15 +192,15 @@ if __name__ == "__main__":
     
     # Plot all results
     #visualizer.plot_training_json(json_path=json_path, save_path=save_path)
-    #visualizer.plot_confusion_matrix(normalize=False, save_path=save_path)
+    visualizer.plot_confusion_matrix(normalize=False, save_path=save_path)
     visualizer.plot_top_k_images_with_highest_loss(k=3, save_path=save_path)
 
-    # Plot array of training images
-    train_transform = base_transform(normalize=True,size=256)
-    test_transform = base_transform(normalize=True,size=256)
-    dm = HotdogNotHotDog_DataModule(train_transform=train_transform, test_transform=test_transform)
-    trainloader = dm.train_dataloader()
-    testloader = dm.test_dataloader()
+    # # Plot array of training images
+    # train_transform = base_transform(normalize=True,size=256)
+    # test_transform = base_transform(normalize=True,size=256)
+    # dm = HotdogNotHotDog_DataModule(train_transform=train_transform, test_transform=test_transform)
+    # trainloader = dm.train_dataloader()
+    # testloader = dm.test_dataloader()
 
-    img, _ = next(iter(trainloader))
-    visualizer.plot_images(img, grid_height=2, grid_width=4)
+    # img, _ = next(iter(trainloader))
+    # visualizer.plot_images(img, grid_height=2, grid_width=4)
