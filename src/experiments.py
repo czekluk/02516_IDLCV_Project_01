@@ -68,9 +68,9 @@ def base_experiment(epochs=10):
 
     epochs = [epochs]
 
-    # trainer = Trainer(models, optimizers, epochs, trainloader, testloader, train_transform, description)
-    # outputs = trainer.train()
-    # save_results(outputs, os.path.join(PROJECT_BASE_DIR, "results/experiments.json"))
+    trainer = Trainer(models, optimizers, epochs, trainloader, testloader, train_transform, description)
+    outputs = trainer.train()
+    save_results(outputs, os.path.join(PROJECT_BASE_DIR, "results/experiments.json"))
 
     # train_transform = base_transform(normalize=True,size=342)
     # test_transform = base_transform(normalize=True,size=342)
