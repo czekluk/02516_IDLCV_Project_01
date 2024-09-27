@@ -25,18 +25,54 @@ from models.pretrained_models import (
     FrozenPretrainedDenseNet121,
     FrozenPretrainedVGG11
 )
+from models.final_model import (
+    FinalCNN,
+    FinalCNN2,
+    FinalCNN3
+)
 from visualizer import Visualizer
 from main import save_results
 PROJECT_BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def main():
-    base_experiment(epochs=25)
-    dropout_experiment(epochs=25)
-    batchnorm_experiment(epochs=25)
-    weightdecay_experiments(epochs=25)
-    dataaugmentation_experiment(epochs=25)
-    deep_experiment(epochs=25)
-    pretrained_experiment(epochs=25)
+    # base_experiment(epochs=25)
+    # dropout_experiment(epochs=25)
+    # batchnorm_experiment(epochs=25)
+    # weightdecay_experiments(epochs=25)
+    # dataaugmentation_experiment(epochs=25)
+    # deep_experiment(epochs=25)
+    # pretrained_experiment(epochs=25)
+    final_experiment(epochs=100)
+
+
+def final_experiment(epochs=10):
+    #####################################
+    # 0: Final model training
+    #####################################
+    train_transform = random_transform(normalize=True,size=256, rotation=True, perspective=True, random_erasing=True)
+    test_transform = base_transform(normalize=True,size=256)
+    dm = HotdogNotHotDog_DataModule(train_transform=train_transform, test_transform=test_transform)
+    trainloader = dm.train_dataloader()
+    testloader = dm.test_dataloader()
+
+    models = [
+        FinalCNN
+    ]
+
+    description = [
+        "1st_FinalCNN",
+    ]
+
+    optimizers = [
+        {"optimizer": torch.optim.Adam, "params": {"lr": 1e-4, "weight_decay": 1e-5}}
+    ]
+
+    epochs = [epochs]
+
+    trainer = Trainer(models, optimizers, epochs, trainloader, testloader, train_transform, description)
+    outputs = trainer.train()
+    save_results(outputs, os.path.join(PROJECT_BASE_DIR, "results/experiments.json"))
+
 
 def base_experiment(epochs=10):
     #####################################
@@ -68,9 +104,11 @@ def base_experiment(epochs=10):
 
     epochs = [epochs]
 
-    # trainer = Trainer(models, optimizers, epochs, trainloader, testloader, train_transform, description)
-    # outputs = trainer.train()
-    # save_results(outputs, os.path.join(PROJECT_BASE_DIR, "results/experiments.json"))
+    trainer = Trainer(models, optimizers, epochs, trainloader, testloader, train_transform, description)
+    outputs = trainer.train()
+    save_results(outputs, os.path.join(PROJECT_BASE_DIR, "results/experiments.json"))
+
+    #####################################
 
     # train_transform = base_transform(normalize=True,size=342)
     # test_transform = base_transform(normalize=True,size=342)
