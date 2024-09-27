@@ -46,7 +46,7 @@ module load numpy
 LOG_FILE="experiment_logs.txt"
 
 # Run the main.py script and save the output to the log file
-python ./src/main.py > "$LOG_FILE" 2>&1
+python ./src/experiments.py > "$LOG_FILE" 2>&1
 
 # Print a message indicating that the logs have been saved
 echo "Logs have been saved to $LOG_FILE"

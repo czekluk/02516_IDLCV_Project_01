@@ -7,7 +7,7 @@ import numpy as np
 import torch
 from sklearn import metrics
 from data.make_dataset import HotdogNotHotDog_DataModule, base_transform
-from models.basic_models import HotdogCNN
+from models.basic_models import BaseCNN
 from tqdm import tqdm
 
 PROJECT_BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -145,7 +145,26 @@ class Visualizer():
         self.losses = losses
         self.images = images
         self.targets = targets
-        self.predictions = predictions        
+        self.predictions = predictions 
+
+    def plot_images(self, data: torch.Tensor, grid_height: int = 4, grid_width: int = 4):
+        max_img = grid_height * grid_width
+        data = data[0:max_img]
+        if grid_height == grid_width/2:
+            fig, axs = plt.subplots(grid_height, grid_width, figsize=(15,7.5))
+        else:
+            fig, axs = plt.subplots(grid_height, grid_width, figsize=(15,15))
+        counter = 0
+        for idx in range(grid_height):
+            for idy in range(grid_width):
+                img = data[counter]
+                img = img.permute((1,2,0)).numpy()
+                axs[idx, idy].imshow(img)
+                axs[idx, idy].axis('off')
+                counter += 1
+
+        plt.tight_layout()
+        plt.show()       
     
 if __name__ == "__main__":
     # Init class
@@ -154,7 +173,7 @@ if __name__ == "__main__":
     save_path = os.path.join(PROJECT_BASE_DIR, "results/figures/")
 
     # Load model
-    model = HotdogCNN()
+    model = BaseCNN()
     model_path = os.path.join(PROJECT_BASE_DIR, "results/shared_models/0.7873-HotdogCNN.pth")
     model.load_state_dict(torch.load(model_path, weights_only=True, map_location=device))
     
@@ -169,3 +188,13 @@ if __name__ == "__main__":
     #visualizer.plot_training_json(json_path=json_path, save_path=save_path)
     #visualizer.plot_confusion_matrix(normalize=False, save_path=save_path)
     visualizer.plot_top_k_images_with_highest_loss(k=3, save_path=save_path)
+
+    # Plot array of training images
+    train_transform = base_transform(normalize=True,size=256)
+    test_transform = base_transform(normalize=True,size=256)
+    dm = HotdogNotHotDog_DataModule(train_transform=train_transform, test_transform=test_transform)
+    trainloader = dm.train_dataloader()
+    testloader = dm.test_dataloader()
+
+    img, _ = next(iter(trainloader))
+    visualizer.plot_images(img, grid_height=2, grid_width=4)
