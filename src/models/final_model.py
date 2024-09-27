@@ -161,7 +161,6 @@ class FinalCNN3(nn.Module):
             nn.ReLU(),
 
             # Layer 6
-
             nn.Conv2d(256, 256, 3, padding=1),  # Additional convolutional layer
             nn.Dropout2d(0.1),
             nn.ReLU(),
