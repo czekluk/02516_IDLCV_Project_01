@@ -68,31 +68,31 @@ def base_experiment(epochs=10):
 
     epochs = [epochs]
 
-    trainer = Trainer(models, optimizers, epochs, trainloader, testloader, train_transform, description)
-    outputs = trainer.train()
-    save_results(outputs, os.path.join(PROJECT_BASE_DIR, "results/experiments.json"))
+    # trainer = Trainer(models, optimizers, epochs, trainloader, testloader, train_transform, description)
+    # outputs = trainer.train()
+    # save_results(outputs, os.path.join(PROJECT_BASE_DIR, "results/experiments.json"))
 
-    train_transform = base_transform(normalize=True,size=342)
-    test_transform = base_transform(normalize=True,size=342)
-    dm = HotdogNotHotDog_DataModule(train_transform=train_transform, test_transform=test_transform)
-    trainloader = dm.train_dataloader()
-    testloader = dm.test_dataloader()
+    # train_transform = base_transform(normalize=True,size=342)
+    # test_transform = base_transform(normalize=True,size=342)
+    # dm = HotdogNotHotDog_DataModule(train_transform=train_transform, test_transform=test_transform)
+    # trainloader = dm.train_dataloader()
+    # testloader = dm.test_dataloader()
 
-    models = [
-        BaseInception,
-    ]
+    # models = [
+    #     BaseInception,
+    # ]
 
-    description = [
-        "Baseline_Inception",
-    ]
+    # description = [
+    #     "Baseline_Inception",
+    # ]
 
-    optimizers = [
-        {"optimizer": torch.optim.Adam, "params": {"lr": 1e-4}}
-    ]
+    # optimizers = [
+    #     {"optimizer": torch.optim.Adam, "params": {"lr": 1e-4}}
+    # ]
 
-    trainer = Trainer(models, optimizers, epochs, trainloader, testloader, train_transform, description)
-    outputs = trainer.train()
-    save_results(outputs, os.path.join(PROJECT_BASE_DIR, "results/experiments.json"))
+    # trainer = Trainer(models, optimizers, epochs, trainloader, testloader, train_transform, description)
+    # outputs = trainer.train()
+    # save_results(outputs, os.path.join(PROJECT_BASE_DIR, "results/experiments.json"))
 
 def dropout_experiment(epochs=10):
     #####################################
@@ -419,10 +419,9 @@ def pretrained_experiment(epochs=10):
     ]
 
     description = [
-        "Baseline_DenseNet",
-        "Baseline_ResNet",
-    	"Baseline_VGG",
-        "Baseline_BaseCNN"
+        "FrozenPretrainedVGG11",
+        "FrozenPretrainedDenseNet121",
+        "FrozenPretrainedResNet18"
     ]
 
     optimizers = [
